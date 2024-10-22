@@ -14,7 +14,6 @@ export class CardComponent {
 @Input() note!: Note;
 @Output() deleteNote = new EventEmitter<Note>();
 @Output() editNote = new EventEmitter<Note>();
-//@Output() addNote = new EventEmitter<void>();
 
 
 ngOnInit():void {
@@ -25,7 +24,6 @@ onDelete() : void {
 }
 
 onEdit() : void {
-  //this.editNote.emit(this.note)
   this.editNote.emit()
 }
 }

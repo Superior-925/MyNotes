@@ -11,3 +11,7 @@
 .app-card {
   flex: 0 1 calc(33.333% - 20px);
 }
+/*.card-container > .card {
+  flex: 0 0 calc(33.333% - 20px); !* Ограничиваем количество карточек в ряду до трех *!
+  margin: 10px;
+}*/

@@ -3,6 +3,9 @@ html, body {
   height: 100%;
   margin: 0;
 }
+li {
+  text-decoration: none;
+}
 
 *{
   margin: 0;
