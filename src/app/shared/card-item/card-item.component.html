@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-body">
+
+    <ng-content></ng-content>
+
+    <div class="card-buttons">
+      <dx-button
+        id="deleteButton"
+        icon="trash"
+        type="danger"
+        (onClick)="onDelete()">
+      </dx-button>
+      <dx-button
+        id="editButton"
+        icon="edit"
+        type="success"
+        (onClick)="onEdit()">
+      </dx-button>
+    </div>
+  </div>
+</div>

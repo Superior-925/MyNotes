@@ -18,6 +18,7 @@ import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NoteAddComponent} from "./components/notes/note-add/note-add.component";
+import {SectionWrapperComponent} from "./shared/section-wrapper/section-wrapper.component";
 
 @Component({
   selector: 'app-root',
@@ -38,6 +39,7 @@ import {NoteAddComponent} from "./components/notes/note-add/note-add.component";
     SidebarComponent,
     FooterComponent,
     NoteAddComponent,
+    SectionWrapperComponent,
     CommonModule,
     ReactiveFormsModule,
     FormsModule],

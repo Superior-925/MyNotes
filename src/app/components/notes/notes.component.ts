@@ -8,6 +8,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {NotesDetailsComponent} from "./notes-details/notes-details.component";
 import {NoteAddComponent} from "./note-add/note-add.component";
 import {DevExtremeModule} from "devextreme-angular";
+import {SectionWrapperComponent} from "../../shared/section-wrapper/section-wrapper.component";
 
 @Component({
   selector: 'app-notes',
@@ -17,7 +18,8 @@ import {DevExtremeModule} from "devextreme-angular";
     CardComponent,
     NotesDetailsComponent,
     NoteAddComponent,
-    DevExtremeModule
+    DevExtremeModule,
+    SectionWrapperComponent
   ],
   templateUrl: './notes.component.html',
   styleUrl: './notes.component.css',

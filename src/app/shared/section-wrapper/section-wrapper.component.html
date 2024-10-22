@@ -1,0 +1,22 @@
+<div>
+  <div class="add-note-button-container">
+    <dx-button
+      id="add-button"
+      icon="add"
+      text="Add new note"
+      (onClick)="callbackFunction()"
+      class="add-note-button"
+    >
+    </dx-button>
+  </div>
+  <div class="notes-container">
+    <ng-content></ng-content>
+  </div>
+</div>
+
+
+<!--
+<app-parent-component>
+  <app-child-component></app-child-component>
+</app-parent-component>
+-->
