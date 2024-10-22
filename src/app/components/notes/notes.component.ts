@@ -26,19 +26,8 @@ import {DevExtremeModule} from "devextreme-angular";
 export class NotesComponent {
   notes: Note[] = []
   loading: boolean = false
-  colCountByScreen = {
-    xs: 1,
-    sm: 2,
-    md: 3,
-    lg: 3,
-    xl: 3
-  };
 
-  rows = [
-    { ratio: 1 },
-    { ratio: 1 },
-    { ratio: 1 }
-  ];
+
 
 
 constructor(private reqService: RequestService, private router: Router) {

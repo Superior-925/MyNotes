@@ -1,1 +1,50 @@
-<p>note-add works!</p>
+<dx-popup id="noteAddPopup"
+          [visible]="isPopupVisible"
+          [showTitle]="true"
+          title="Add Note"
+          [width]="500"
+          [height]="600">
+  <div class="note-edit-form" >
+    <form
+      [formGroup]="noteForm"
+      (ngSubmit)="save()"
+      *ngIf="noteForm" >
+      <dx-text-box formControlName="title" placeholder="Title"></dx-text-box>
+      <dx-text-area formControlName="content" placeholder="Content"></dx-text-area>
+      <dx-tag-box formControlName="tags" placeholder="Tags"></dx-tag-box>
+      <dx-date-box formControlName="date"
+                   placeholder="Date"
+                   type="datetime"
+                   displayFormat="dd.MM.yyyy HH:mm"></dx-date-box>
+      <dx-date-box formControlName="deadline"
+                   placeholder="Deadline"
+                   type="datetime"
+                   displayFormat="dd.MM.yyyy HH:mm"></dx-date-box>
+      <dx-button text="Save" type="success" [useSubmitBehavior]="true"></dx-button>
+    </form>
+  </div>
+</dx-popup>
+
+<!--<dx-popup id="noteAddPopup"
+          [visible]="isPopupVisible"
+          [showTitle]="true"
+          title="Add Note"
+          [width]="500"
+          [height]="600">
+  <div class="note-edit-form" *ngIf="noteForm">
+    <form [formGroup]="noteForm" (ngSubmit)="save()">
+      <dx-text-box formControlName="title" placeholder="Title"></dx-text-box>
+      <dx-text-area formControlName="content" placeholder="Content"></dx-text-area>
+      <dx-tag-box formControlName="tags" placeholder="Tags"></dx-tag-box>
+      <dx-date-box formControlName="date"
+                   placeholder="Date"
+                   type="datetime"
+                   displayFormat="dd.MM.yyyy HH:mm"></dx-date-box>
+      <dx-date-box formControlName="deadline"
+                   placeholder="Deadline"
+                   type="datetime"
+                   displayFormat="dd.MM.yyyy HH:mm"></dx-date-box>
+      <dx-button text="Save" type="success" [useSubmitBehavior]="true"></dx-button>
+    </form>
+  </div>
+</dx-popup>-->

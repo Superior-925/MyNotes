@@ -1,10 +1,23 @@
-<div class="notes-container">
-<div *ngFor="let note of notes" class="card-container">
-  <app-card
-    [note]="note"
-    (deleteNote)="deleteNote($event)"
-    (editNote)="noteDetails(note)"
-    class="app-card">
-  </app-card>
+<div>
+  <div class="add-note-button-container">
+    <dx-button
+      id="add-button"
+      icon="add"
+      text="Add new note"
+      (onClick)="addNote()"
+      class="add-note-button"
+    >
+    </dx-button>
+  </div>
+  <div class="notes-container">
+    <div *ngFor="let note of notes" class="card-container">
+      <app-card
+        [note]="note"
+        (deleteNote)="deleteNote($event)"
+        (editNote)="noteDetails(note)"
+        class="app-card">
+      </app-card>
+    </div>
+  </div>
 </div>
-</div>
+

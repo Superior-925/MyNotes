@@ -16,6 +16,8 @@ import {SidebarComponent} from "./components/sidebar/sidebar.component";
 import {FooterComponent} from "./components/footer/footer.component";
 import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {NoteAddComponent} from "./components/notes/note-add/note-add.component";
 
 @Component({
   selector: 'app-root',
@@ -35,7 +37,10 @@ import {HttpClientModule} from "@angular/common/http";
     HeaderComponent,
     SidebarComponent,
     FooterComponent,
-    CommonModule],
+    NoteAddComponent,
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule],
   providers:[HttpClientModule]
 })
 

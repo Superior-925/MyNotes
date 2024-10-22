@@ -3,8 +3,25 @@
   display: grid;
   grid-template-columns: repeat(3,1fr);
 }
+/* Button */
+.add-note-button-container {
+  padding: 5px;
+  display: flex;
+ justify-content: right;
+  align-items: center;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.08);
+}
 
-/*.card-container > .card {
-  flex: 0 0 calc(33.333% - 20px); !* Ограничиваем количество карточек в ряду до трех *!
-  margin: 10px;
+.add-note-button {
+  font-size: 18px;
+  padding: 10px 10px;
+  margin-right: 30px;
+  background: #ade88f;
+  color: black;
+  border-radius: 20px;
+}
+
+/*#add-button .dx-icon {
+  color: green;
 }*/
+
