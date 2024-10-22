@@ -1,0 +1,13 @@
+.card-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
+  gap:20px;
+  overflow: auto;
+}
+
+.app-card {
+  flex: 0 1 calc(33.333% - 20px);
+}

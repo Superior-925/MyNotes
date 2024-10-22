@@ -1,35 +1,5 @@
-<div class="flex-container">
-  <dx-toolbar
-    [items]="toolbarContent"
-    id="toolbar"
-    class="dx-theme-background-color"
-  ></dx-toolbar>
-  <dx-drawer
-    [openedStateMode]="selectedOpenMode"
-    [position]="selectedPosition"
-    [revealMode]="selectedRevealMode"
-    template="template"
-    [(opened)]="isDrawerOpen"
-    [height]="400"
-    [closeOnOutsideClick]="true"
-  >
-    <div *dxTemplate="let data of 'template'"
-      style="width: 200px" class="listItems">
-      <dx-list
-        class="panel-list dx-theme-typography-background-color"
-        [items]="navigation"
-        [dataSource]="navigation"
-        [hoverStateEnabled]="false"
-        [activeStateEnabled]="false"
-        [focusStateEnabled]="false"
-        (onItemClick)="onNavigationItemClicked($event.itemData)"
-      >
-      </dx-list>
-    </div>
-    <div id="content" class="dx-theme-background-color">
-      <router-outlet></router-outlet>
-    </div>
-
-  </dx-drawer>
+<div class="app-container">
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<app-footer></app-footer>
 </div>
-

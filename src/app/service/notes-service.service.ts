@@ -1,48 +1,53 @@
 import {Injectable} from '@angular/core';
 import {Note} from "../models/note";
-/**
- * Сервис `NotesServiceService` предназначен для управления заметками в приложении.
- * Он предоставляет методы для добавления, удаления, редактирования и получения списка записок.
- *
- * @example
- * // Добавление новой заметки
- * this.notesService.addNote(new Note('Заметка 1'));
- *
- * // Удаление заметки по ID
- * this.notesService.deleteNote(1);
- *
- * // Редактирование существующей заметки
- * const updatedNote = new Note('Обновленная заметка', 1);
- * this.notesService.editNote(updatedNote);
- *
- * // Получение списка всех записок
- * const notes = this.notesService.getNotes();
- */
+import {Observable, of} from "rxjs";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+
 @Injectable({
   providedIn: 'root'
 })
-export class NotesServiceService {
-  private notes: Array<Note> = [];
+export class RequestService {
+  private url = 'api/notes';
 
-  constructor() {
+  private handleError<T>(operation = 'operation', result?: T): any {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of(result as T);
+    };
   }
 
-  addNote(note: Note) {
-    this.notes.push(note)
+  httpOptions = {
+    headers: new HttpHeaders({'Content-Type': 'application/json'}),
+  };
+
+  constructor(private http: HttpClient) {
   }
 
-  deleteNote(id: number) {
-    this.notes = this.notes.filter(note => note.id !== id)
+  getNotes(): Observable<Note[]> {
+    return this.http
+      .get<Note[]>(this.url)
   }
 
-  editNote(updateNote: Note) {
-    const index = this.notes.findIndex(note => note.id === updateNote.id)
-    if (index != -1) {
-      this.notes[index] = updateNote
-    }
+  getNote(id: number): Observable<Note> {
+    const url = `${this.url}/${id}`;
+    return this.http
+      .get<Note>(url)
   }
 
-  getNotes(): Note[] {
-    return this.notes;
+  updateNote(note: Note): any {
+    return this.http
+      .put(this.url, note, this.httpOptions)
   }
+
+  addNote(note: Note): Observable<Note> {
+    return this.http
+      .post<Note>(this.url, note, this.httpOptions)
+  }
+
+  deleteNote(note: Note): Observable<Note> {
+    const url = `${this.url}/${note.id}`;
+    return this.http.delete<Note>(url, this.httpOptions)
+  }
+
+
 }
