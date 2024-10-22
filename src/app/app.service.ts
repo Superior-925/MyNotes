@@ -7,11 +7,9 @@ export class List {
 }
 
 const navigation: List[] = [
-  { id: 1, text: 'Products', icon: 'product' },
-  { id: 2, text: 'Sales', icon: 'money' },
-  { id: 3, text: 'Customers', icon: 'group' },
-  { id: 4, text: 'Employees', icon: 'card' },
-  { id: 5, text: 'Reports', icon: 'chart' },
+  { id: 1, text: "Notes", icon: "textdocument" },
+  { id: 2, text: "Reminders", icon: "clock"},
+  { id: 3, text: "Tags", icon: "tags" }
 ];
 
 const text = `
