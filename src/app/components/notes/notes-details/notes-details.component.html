@@ -7,9 +7,16 @@
     <dx-text-box [(value)]="note.title" placeholder="Title"></dx-text-box>
     <dx-text-area [(value)]="note.content" placeholder="Content"></dx-text-area>
     <dx-tag-box [(value)]="note.tags" placeholder="Tags"></dx-tag-box>
-    <dx-date-box [(value)]="note.date" placeholder="Date"></dx-date-box>
-    <dx-date-box [(value)]="note.deadline" placeholder="Deadline"></dx-date-box>
+    <dx-date-box [(value)]="note.date"
+                 placeholder="Date"
+                 type="datetime"
+                 displayFormat="dd.MM.yyyy HH:mm"></dx-date-box>
+    <dx-date-box [(value)]="note.deadline"
+                 placeholder="Deadline"
+                 type="datetime"
+                 displayFormat="dd.MM.yyyy HH:mm"></dx-date-box>
     <dx-button text="Save" (onClick)="save()"></dx-button>
   </div>
 </dx-popup>
+
 

@@ -3,6 +3,6 @@ export interface Note {
   title: string;
   content: string;
   tags: string[];
-  date: string;
-  deadline:string
+  date: Date
+  deadline:Date
 }

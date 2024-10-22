@@ -13,32 +13,32 @@ export class InMemoryDataService implements InMemoryDbService {
         title: 'Task',
         content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
         tags: ['critical'],
-        date: '11.03.2024',
-        deadline: '11.04.2024'
+        date: new Date('2024-03-11T10:00:00'), // Добавлено время
+        deadline: new Date('2024-04-11T17:00:00'), // Добавлено время
       },
       {
         id: 2,
         title: 'Some text',
         content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
         tags: ['high'],
-        date: '14.02.2024',
-        deadline: '28.03.2024'
+        date: new Date('2024-03-11T10:00:00'), // Добавлено время
+        deadline: new Date('2024-04-11T17:00:00'), // Добавлено время
       },
       {
         id: 3,
         title: 'Any Task',
         content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
         tags: ['medium'],
-        date: '7.02.2024',
-        deadline: '7.03.2024',
+        date: new Date('2024-03-11T10:00:00'), // Добавлено время
+        deadline: new Date('2024-04-11T17:00:00'), // Добавлено время
       },
       {
         id: 4,
         title: 'Any Many Task',
         content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
         tags: ['low'],
-        date: '14.03.2024',
-        deadline: '7.04.2024'
+        date: new Date('2024-03-11T10:00:00'), // Добавлено время
+        deadline: new Date('2024-04-11T17:00:00'), // Добавлено время
       },
     ];
     return { notes }
@@ -52,12 +52,13 @@ export class InMemoryDataService implements InMemoryDbService {
 
   getDate(): string {
     const currentDate = new Date();
-    const formattedDate = currentDate.toLocaleDateString('ru-RU', {
+    return currentDate.toLocaleString('ru-RU', {
       day: '2-digit',
       month: '2-digit',
-      year: 'numeric'
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
     });
-    return formattedDate;
   }
 
   IsDeadlineTomorrow(note: Note): void {

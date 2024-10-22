@@ -3,10 +3,10 @@
     <h2>{{ note.title }}</h2>
     <p>{{ note.content }}</p>
     <p class="text">Date:
-      <span class="inner-text">{{ note.date }}</span>
+      <span class="inner-text">{{ note.date | date: 'dd.MM.yyyy,HH:mm' }}</span>
     <p class="text" *ngIf="note.deadline">
     Deadline:
-    <span class="inner-text">{{ note.deadline }}</span>
+    <span class="inner-text">{{ note.deadline | date: 'dd.MM.yyyy, HH:mm' }}</span>
     </p>
     <ul *ngIf="note.tags && note.tags.length > 0">
       <li *ngFor="let tag of note.tags">{{ tag }}</li>
