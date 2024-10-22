@@ -18,7 +18,7 @@ export class NotesComponent {
   notes: Note[] = []
   loading: boolean = false
 
-  constructor(private reqService: RequestService) {
+  constructor(private reqService: RequestService, private router: Router) {
     this.getNotes()
   }
 
@@ -33,8 +33,13 @@ export class NotesComponent {
       this.loading = false
     })
   }
-  addNote():void {}
-  noteDetails(id:number){}
+  addNote():void {
+    this.router.navigate(['add'])
+  }
+  noteDetails(note:Note){
+    const noteId= note.id
+    this.router.navigate(['note',noteId])
+  }
   deleteNote (note:any) {
     this.notes = this.notes.filter(u => u !== note)
     this.reqService.deleteNote(note).subscribe()

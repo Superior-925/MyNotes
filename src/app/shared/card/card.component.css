@@ -1,0 +1,57 @@
+.container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+  padding: 20px;
+  transition: transform 0.2s ease-in-out;
+  max-width: 100px;
+}
+
+.container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #666;
+  line-height: 1.6;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+  background-color: #f2f2f2;
+  border-radius: 4px;
+  color: #555;
+  margin: 5px;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+li:before {
+  content: "#";
+}
+
+/* Дополнительные стили для даты и дедлайна */
+p.date, p.deadline {
+  font-style: italic;
+  color: #333;
+}
+
+#deleteButton .dx-icon {
+  color: red;
+}
+#editButton .dx-icon {
+  color: green;
+}

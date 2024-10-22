@@ -1,0 +1,28 @@
+<div class="contaner">
+  <h2>{{ note.title }}</h2>
+  <p>{{ note.content }}</p>
+  <p>Date: {{ note.date }}</p>
+  <p *ngIf ="note.deadline">Deadline: {{ note.deadline }}</p>
+  <ul *ngIf="note.tags && note.tags.length > 0">
+    <li *ngFor="let tag of note.tags">{{ tag }}</li>
+  </ul>
+
+  <div>
+    <dx-button
+      id="deleteButton"
+      icon="trash"
+      type="danger"
+      (onClick)="onDelete()"
+      [width]="25"
+      [height]="25">
+    </dx-button>
+    <dx-button
+      id="editButton"
+      icon="edit"
+      type="success"
+      (onClick)="onEdit()"
+      [width]="25"
+      [height]="25">
+    </dx-button>
+  </div>
+</div>
