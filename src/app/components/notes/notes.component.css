@@ -1,16 +1,9 @@
-.card-container {
+.notes-container {
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: space-between;
-  gap:20px;
-  overflow: auto;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
 }
 
-.app-card {
-  flex: 0 1 calc(33.333% - 20px);
-}
 /*.card-container > .card {
   flex: 0 0 calc(33.333% - 20px); !* Ограничиваем количество карточек в ряду до трех *!
   margin: 10px;

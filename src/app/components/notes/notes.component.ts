@@ -7,6 +7,7 @@ import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
 import {NotesDetailsComponent} from "./notes-details/notes-details.component";
 import {NoteAddComponent} from "./note-add/note-add.component";
+import {DevExtremeModule} from "devextreme-angular";
 
 @Component({
   selector: 'app-notes',
@@ -15,7 +16,9 @@ import {NoteAddComponent} from "./note-add/note-add.component";
     CommonModule,
     CardComponent,
     NotesDetailsComponent,
-    NoteAddComponent],
+    NoteAddComponent,
+    DevExtremeModule
+  ],
   templateUrl: './notes.component.html',
   styleUrl: './notes.component.css',
 
@@ -23,8 +26,22 @@ import {NoteAddComponent} from "./note-add/note-add.component";
 export class NotesComponent {
   notes: Note[] = []
   loading: boolean = false
+  colCountByScreen = {
+    xs: 1,
+    sm: 2,
+    md: 3,
+    lg: 3,
+    xl: 3
+  };
 
-  constructor(private reqService: RequestService, private router: Router) {
+  rows = [
+    { ratio: 1 },
+    { ratio: 1 },
+    { ratio: 1 }
+  ];
+
+
+constructor(private reqService: RequestService, private router: Router) {
     this.getNotes()
   }
 

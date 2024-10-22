@@ -7,7 +7,7 @@ import {List, SidebarServiceService as Service} from '../../service/sidebar-serv
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [DxDrawerModule, DxListModule, RouterModule, DxToolbarModule],
+  imports: [DxDrawerModule,DxListModule, RouterModule, DxToolbarModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
