@@ -31,21 +31,22 @@ import {CommonModule} from "@angular/common";
   templateUrl: './note-add.component.html',
   styleUrl: './note-add.component.css'
 })
-export class NoteAddComponent implements OnInit{
-  noteForm:FormGroup
+export class NoteAddComponent implements OnInit {
+  noteForm: FormGroup
   isPopupVisible = true;
 
   constructor(
-    private formBuilder:FormBuilder,
-    private reqService:RequestService,
+    private formBuilder: FormBuilder,
+    private reqService: RequestService,
     private router: Router
   ) {
-    this.noteForm = this.formBuilder.group( {
+
+    this.noteForm = this.formBuilder.group({
       title: ['', Validators.required],
       content: ['', Validators.required],
       tags: [''], // Опционально, можешь добавить валидаторы
-      date: ['', Validators.required],
-      deadline: ['', Validators.required],
+      date: [null, Validators.required],
+      deadline: [null, Validators.required],
     })
   }
 
@@ -53,10 +54,13 @@ export class NoteAddComponent implements OnInit{
     return this.noteForm.controls;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   save(): void {
-    if (this.noteForm.invalid) {return}
+    if (this.noteForm.invalid) {
+      return
+    }
 
     const note: Note = {
       id: 0,
@@ -67,13 +71,12 @@ export class NoteAddComponent implements OnInit{
       deadline: this.f.deadline.value,
     };
 
-/*    this.reqService.addNote(note).subscribe(() => {
-      // Закрыть попап и возможно обновить список заметок или перенаправить пользователя
-      this.isPopupVisible = false;
-    });*/
+
     this.reqService
       .addNote(note as Note)
       .subscribe(() => this.router.navigate(['notes']))
+    this.isPopupVisible = false
+
   }
 
 
