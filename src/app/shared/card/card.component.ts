@@ -23,7 +23,9 @@ ngOnInit():void {
 onDelete() : void {
   this.deleteNote.emit(this.note)
 }
+
 onEdit() : void {
-  this.editNote.emit(this.note)
+  //this.editNote.emit(this.note)
+  this.editNote.emit()
 }
 }

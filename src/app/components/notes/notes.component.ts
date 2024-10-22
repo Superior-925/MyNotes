@@ -5,11 +5,17 @@ import {Router} from "@angular/router";
 import {CardComponent} from "../../shared/card/card.component";
 import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
+import {NotesDetailsComponent} from "./notes-details/notes-details.component";
+import {NoteAddComponent} from "./note-add/note-add.component";
 
 @Component({
   selector: 'app-notes',
   standalone: true,
-  imports: [CardComponent,CommonModule],
+  imports: [
+    CommonModule,
+    CardComponent,
+    NotesDetailsComponent,
+    NoteAddComponent],
   templateUrl: './notes.component.html',
   styleUrl: './notes.component.css',
 
@@ -23,24 +29,27 @@ export class NotesComponent {
   }
 
   getNotes() {
-    this.loading=true;
+    this.loading = true;
     this.reqService.getNotes().subscribe(
-    (res:Note[]) => {
-      this.notes = res
-      this.loading=false;
-    },(err)=> {
-      console.error(err)
-      this.loading = false
-    })
+      (res: Note[]) => {
+        this.notes = res
+        this.loading = false;
+      }, (err) => {
+        console.error(err)
+        this.loading = false
+      })
   }
-  addNote():void {
+
+  addNote(): void {
     this.router.navigate(['add'])
   }
-  noteDetails(note:Note){
-    const noteId= note.id
-    this.router.navigate(['note',noteId])
+
+  noteDetails(note: Note) {
+    const noteId = note.id
+    this.router.navigate(['notes', noteId])
   }
-  deleteNote (note:any) {
+
+  deleteNote(note: any) {
     this.notes = this.notes.filter(u => u !== note)
     this.reqService.deleteNote(note).subscribe()
   }

@@ -2,8 +2,10 @@
   <app-card
     [note]="note"
     (deleteNote)="deleteNote($event)"
-    (editNote)="noteDetails($event)"
-    class="app-card"></app-card>
+    (editNote)="noteDetails(note)"
+    class="app-card">
+
+  </app-card>
 </div>
 
 

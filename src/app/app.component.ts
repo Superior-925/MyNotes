@@ -1,5 +1,14 @@
 import { Component } from '@angular/core';
-import { DxDrawerModule, DxListModule, DxToolbarModule } from 'devextreme-angular';
+import {
+  DxButtonModule,
+  DxDateBoxModule,
+  DxDrawerModule,
+  DxListModule,
+  DxPopupModule, DxTagBoxModule,
+  DxTextAreaModule,
+  DxTextBoxModule,
+  DxToolbarModule
+} from 'devextreme-angular';
 import {RouterModule} from '@angular/router';
 import {HeaderComponent} from "./components/header/header.component";
 import {SidebarComponent} from "./components/sidebar/sidebar.component";
@@ -16,9 +25,15 @@ import {HttpClientModule} from "@angular/common/http";
   standalone: true,
   imports: [DxDrawerModule,
     DxListModule,
+    DxPopupModule,
+    DxTextBoxModule,
+    DxTextAreaModule,
+    DxTagBoxModule,
+    DxDateBoxModule,
+    DxButtonModule,
     HttpClientModule,
-    RouterModule,
     DxToolbarModule,
+    RouterModule,
     HeaderComponent,
     SidebarComponent,
     FooterComponent,
