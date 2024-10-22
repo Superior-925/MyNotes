@@ -5,11 +5,10 @@ import {TagsComponent} from "./components/tags/tags.component";
 import {NgModule} from "@angular/core";
 
 export const ROUTES: Routes = [
-  {path: '', redirectTo: '/notes', pathMatch: 'full'},
-  {path: 'notes', component: NotesComponent},
+/*  {path: '', redirectTo: 'notes'},*/
+  {path: 'notes', component: NotesComponent, title :'Notes'},
   {path: 'reminders', component: RemindersComponent, title: 'Reminders'},
   {path: 'tags', component: TagsComponent, title: 'Tags'},
-  {path: '**', component: NotesComponent}
 ];
 
 @NgModule({

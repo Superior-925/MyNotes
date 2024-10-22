@@ -13,6 +13,7 @@ bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(RouterModule.forRoot([
       { path: '', component: NotesComponent, title: 'Notes' },
+      { path: 'notes', component: NotesComponent },
       { path: 'reminders', component: RemindersComponent, title: 'Reminders' },
       { path: 'tags', component: TagsComponent, title: 'Tags' },
     ]))
