@@ -11,5 +11,5 @@ import {DxButtonModule} from "devextreme-angular";
   styleUrl: './section-wrapper.component.css'
 })
 export class SectionWrapperComponent {
-  @Input() callbackFunction: () => void;
+  @Input() callbackFunction!: () => void;
 }

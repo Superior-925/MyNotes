@@ -1,0 +1,16 @@
+<app-card-item [onDelete]="onDelete" [onEdit]="onEdit">
+  <h2>{{ remind.title }}</h2>
+  <p class="text" *ngIf="remind.deadline">
+    Deadline:
+    <span class="inner-text">{{ remind.deadline | date: 'dd.MM.yyyy, HH:mm' }}</span>
+  </p>
+
+  <p class="text">Remind me for:
+    <span class="inner-text">
+      {{ remind.remindMe | date: 'dd.MM.yyyy,HH:mm' }}
+    </span>
+
+  <ul *ngIf="remind.tags && remind.tags.length > 0">
+    <li *ngFor="let tag of remind.tags">{{ tag }}</li>
+  </ul>
+</app-card-item>

@@ -11,6 +11,8 @@ import {DxButtonModule} from "devextreme-angular";
   styleUrl: './card-item.component.css'
 })
 export class CardItemComponent {
+/*  @Input() onDelete: () => void;
+  @Input() onEdit: () => void;*/
   @Input() onDelete: () => void;
   @Input() onEdit: () => void;
 }
