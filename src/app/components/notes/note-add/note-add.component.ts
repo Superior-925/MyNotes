@@ -78,9 +78,8 @@ export class NoteAddComponent implements OnInit {
     this.isPopupVisible = false
 
   }
-
-
   closePopup(): void {
     this.isPopupVisible = false;
+    this.router.navigate(['notes'])
   }
 }

@@ -1,7 +1,8 @@
 <dx-popup id="noteAddPopup"
           [visible]="isPopupVisible"
+          (closeOnOutsideClickChange)="closePopup"
           [showTitle]="true"
-          title="Add Note"
+          title="Add Remind"
           [width]="500"
           [height]="600">
   <div class="note-edit-form" >
@@ -15,7 +16,7 @@
                    placeholder="Deadline"
                    type="datetime"
                    displayFormat="dd.MM.yyyy HH:mm"></dx-date-box>
-      <dx-date-box formControlName="deadline"
+      <dx-date-box formControlName="remindMe"
                    placeholder="Remind me for"
                    type="datetime"
                    displayFormat="dd.MM.yyyy HH:mm"></dx-date-box>

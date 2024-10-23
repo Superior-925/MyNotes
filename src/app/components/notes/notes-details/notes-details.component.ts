@@ -47,7 +47,7 @@ export class NotesDetailsComponent {
   }
   closePopup(): void {
     this.isPopupVisible = false;
-    this.close.emit(); // Эмитируем событие закрытия, чтобы родительский компонент мог скрыть поп-ап
+    this.close.emit();
   }
   save(): void {
     this.reqService

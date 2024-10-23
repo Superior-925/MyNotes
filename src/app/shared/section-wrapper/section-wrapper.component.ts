@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {DxButtonModule} from "devextreme-angular";
 
 @Component({
@@ -12,6 +12,7 @@ import {DxButtonModule} from "devextreme-angular";
 })
 export class SectionWrapperComponent {
   @Input() addFunc!: () => void;
+  @Input() ButtonName: string = ''
 
   onAdd(): void {
     this.addFunc()

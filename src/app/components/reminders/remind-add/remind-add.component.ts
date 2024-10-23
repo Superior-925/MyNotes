@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {
   DxButtonModule,
   DxDateBoxModule, DxFormModule,
@@ -11,43 +11,45 @@ import {CommonModule} from "@angular/common";
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {RequestRemindService} from "../../../service/reminds-service.service";
 import {Router} from "@angular/router";
-import {Note} from "../../../models/note";
 import {Remind} from "../../../models/remind";
+import {catchError, throwError} from "rxjs";
 
 @Component({
   selector: 'app-remind-add',
   standalone: true,
-    imports: [
-      CommonModule,
-      ReactiveFormsModule,
-      FormsModule,
-      DxPopupModule,
-      DxTextBoxModule,
-      DxTextAreaModule,
-      DxTagBoxModule,
-      DxDateBoxModule,
-      DxButtonModule,
-      DxFormModule,
-    ],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    DxPopupModule,
+    DxTextBoxModule,
+    DxTextAreaModule,
+    DxTagBoxModule,
+    DxDateBoxModule,
+    DxButtonModule,
+    DxFormModule,
+  ],
   templateUrl: './remind-add.component.html',
   styleUrl: './remind-add.component.css'
 })
 export class RemindAddComponent {
-  remindForm:FormGroup
+  remindForm: FormGroup
   isPopupVisible = true;
+
   constructor(
-    private formBuilder:FormBuilder,
-    private reqService:RequestRemindService,
-    private router:Router
+    private formBuilder: FormBuilder,
+    private reqService: RequestRemindService,
+    private router: Router
   ) {
     this.remindForm = this.formBuilder.group({
-      title: ['',Validators.required],
-      tags: [''], // Опционально, можешь добавить валидаторы
-      deadline:[null, Validators.required],
-      remindMe:[null, Validators.required]
+      title: ['', Validators.required],
+      tags: [''],
+      deadline: [null, Validators.required],
+      remindMe: [null, Validators.required]
 
-  })
+    })
   }
+
   get f(): any {
     return this.remindForm.controls;
   }
@@ -67,13 +69,28 @@ export class RemindAddComponent {
       deadline: this.f.deadline.value,
       remindMe: this.f.remindMe.value,
     };
+    console.log('Saving object:', remind);
+
+    this.reqService.addRemind(remind as Remind)
+      .pipe(
+        catchError(error => {
+          console.error('Ошибка при добавлении напоминания:', error);
+          return throwError(error);
+        })
+      )
+      .subscribe(() => this.router.navigate(['reminders']));
 
 
-    this.reqService
+    /*this.reqService
       .addRemind(remind as Remind)
       .subscribe(() => this.router.navigate(['reminders']))
-    this.isPopupVisible = false
+    this.isPopupVisible = false*/
 
+  }
+
+  closePopup(): void {
+    this.isPopupVisible = false;
+    this.router.navigate(['reminders'])
   }
 
 }

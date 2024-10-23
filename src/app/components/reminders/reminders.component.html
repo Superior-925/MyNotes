@@ -1,4 +1,4 @@
-<app-section-wrapper [addFunc]="addRemind">
+<app-section-wrapper [ButtonName]="'Add new Remind'" [addFunc]="addRemind">
   <div *ngFor="let remind of reminds" class="card-container">
     <app-remind-card
       [remind]="remind"
