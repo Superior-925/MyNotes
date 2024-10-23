@@ -12,11 +12,12 @@
       *ngIf="remindForm" >
       <dx-text-box formControlName="title" placeholder="Title"></dx-text-box>
       <dx-tag-box
-      [items]="tags"
-      [dataSource]="tags"
-      valueExpr="id"
-      displayExpr="tagTitle"
-      placeholder="Tags"></dx-tag-box>
+        formControlName="tags"
+        [items]="tags"
+        valueExpr="id"
+        displayExpr="tagTitle"
+        placeholder="Tags"></dx-tag-box>
+
       <dx-date-box formControlName="deadline"
                    placeholder="Deadline"
                    type="datetime"
@@ -32,4 +33,12 @@
 <!--
 <dx-tag-box
   formControlName="tags"
+  placeholder="Tags"></dx-tag-box>-->
+
+
+<!--  <dx-tag-box
+  [items]="tags"
+  [dataSource]="tags"
+  valueExpr="id"
+  displayExpr="tagTitle"
   placeholder="Tags"></dx-tag-box>-->
