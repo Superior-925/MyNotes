@@ -5,8 +5,15 @@
           [height]="600">
   <div class="note-edit-form">
     <dx-text-box [(value)]="remind.title" placeholder="Title"></dx-text-box>
+    <dx-tag-box
+      [(value)]="remind.tags"
+      [dataSource]="tags"
+      valueExpr="id"
+      displayExpr="title"
+      placeholder="Tags">
+    </dx-tag-box>
 
-    <dx-tag-box [(value)]="remind.tags" placeholder="Tags"></dx-tag-box>
+
     <dx-date-box [(value)]="remind.deadline"
                  placeholder="Deadline"
                  type="datetime"
@@ -19,5 +26,9 @@
   </div>
 </dx-popup>
 
-
+<!--    <dx-tag-box
+      [(value)]="remind.tags"
+      placeholder="Tags"
+    [dataSource]="tags"
+    displayExpr="name"></dx-tag-box>-->
 

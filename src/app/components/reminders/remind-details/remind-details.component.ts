@@ -11,6 +11,8 @@ import {
   DxTextAreaModule,
   DxTextBoxModule
 } from "devextreme-angular";
+import {Tag} from "../../../models";
+import {TagsServiceService} from "../../../service/tags-service.service";
 
 @Component({
   selector: 'app-remind-details',
@@ -29,6 +31,7 @@ import {
 export class RemindDetailsComponent {
   @Output() close = new EventEmitter<void>();
   @Input() remind!: Remind;
+  tags: Tag[] = []
 
   isPopupVisible = false;
 
@@ -36,6 +39,7 @@ export class RemindDetailsComponent {
     private activatedRoute: ActivatedRoute,
     private reqService: RequestRemindService,
     private router: Router,
+    private tagsService : TagsServiceService
   ){}
 
   ngOnInit() {
@@ -45,7 +49,13 @@ export class RemindDetailsComponent {
         this.isPopupVisible = true
       })
     })
+
+    this.tagsService.getTags().subscribe((tags) => {
+      this.tags = tags
+    })
   }
+
+
 
   closePopup(): void {
     this.isPopupVisible = false;
