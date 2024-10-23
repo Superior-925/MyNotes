@@ -8,10 +8,10 @@
     <dx-tag-box
       [(value)]="remind.tags"
       [dataSource]="tags"
-      valueExpr="id"
       displayExpr="tagTitle"
       placeholder="Tags">
     </dx-tag-box>
+
     <dx-date-box [(value)]="remind.deadline"
                  placeholder="Deadline"
                  type="datetime"
@@ -25,4 +25,10 @@
 </dx-popup>
 
 
-
+<!--    <dx-tag-box
+      [(value)]="remind.tags"
+      [dataSource]="tags"
+      valueExpr="id"
+      displayExpr="tagTitle"
+      placeholder="Tags">
+    </dx-tag-box>-->

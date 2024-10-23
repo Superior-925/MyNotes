@@ -63,21 +63,17 @@ export class RemindDetailsComponent {
     this.router.navigate(['reminders'])
   }
 
-/*  save():void {
 
-    this.reqService
-      .updateRemind(this.remind)
-      .subscribe(() => this.router.navigate(['reminders']))
-    console.log(`Edited remind:` )
-    console.log(this.remind )
-  }*/
-
-  save(): void {
+/*  save(): void {
     // Преобразование идентификаторов тегов в объекты тегов
     const tagIds = this.remind.tags;
-    const tagObjects = tagIds.map(id => typeof id === 'number' ? this.tags.find(tag => tag.id === id) : id);
+    const tagObjects = tagIds
+      .map(id => typeof id === 'number'
+        ? this.tags.find(tag => tag.id === id)
+        : id);
     // Удаление undefined значений из массива tagObjects
-    const filteredTagObjects = tagObjects.filter(tag => tag !== undefined) as Tag[];
+    const filteredTagObjects = tagObjects
+      .filter(tag => tag !== undefined) as Tag[];
 
     // Обновление объекта remind с преобразованными тегами
     const updatedRemind: Remind = {
@@ -91,7 +87,27 @@ export class RemindDetailsComponent {
 
     console.log(`Edited remind:`);
     console.log(updatedRemind);
+  }*/
+
+  save(): void {
+    // Сначала получаем текущие выбранные ID тегов из remind
+    const selectedTagIds = this.remind.tags.map(tag => tag.id);
+
+    // Затем находим полные объекты тегов, соответствующие этим ID
+    const selectedTags = this.tags.filter(tag => selectedTagIds.includes(tag.id));
+
+    // Обновляем remind с полными объектами тегов
+    const updatedRemind: Remind = {
+      ...this.remind,
+      tags: selectedTags
+    };
+
+    this.reqService.updateRemind(updatedRemind).subscribe(() => {
+      this.router.navigate(['reminders']);
+      this.closePopup();
+    });
   }
+
 
 
 }
