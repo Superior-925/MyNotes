@@ -1,12 +1,13 @@
 import {Component} from '@angular/core';
 import {CommonModule} from "@angular/common";
-import {CardComponent} from "../../shared/card/card.component";
 import {NotesDetailsComponent} from "../notes/notes-details/notes-details.component";
 import {NoteAddComponent} from "../notes/note-add/note-add.component";
 import {DevExtremeModule} from "devextreme-angular";
 import {Remind} from "../../models/remind";
 import {RequestRemindService} from "../../service/reminds-service.service";
 import {Router} from "@angular/router";
+import {SectionWrapperComponent} from "../../shared/section-wrapper/section-wrapper.component";
+import {RemindCardComponent} from "./remind-card/remind-card.component";
 
 @Component({
   selector: 'app-reminders',
@@ -16,6 +17,8 @@ import {Router} from "@angular/router";
     NotesDetailsComponent,
     NoteAddComponent,
     DevExtremeModule,
+    SectionWrapperComponent,
+    RemindCardComponent,
   ],
   templateUrl: './reminders.component.html',
   styleUrl: './reminders.component.css'
@@ -38,11 +41,25 @@ export class RemindersComponent {
       (res:Remind[]) => {
         this.reminds = res
         this.loading = false
-        console.log(res)
+        /*console.log(res)*/
       }, (err) => {
         console.log(err)
         this.loading = false
       }
     )
+  }
+
+  addRemind():void {
+    this.router.navigate(['reminders/add'])
+  }
+
+  remindDetails(remind:Remind) {
+    const remindId= remind.id
+    this.router.navigate(['reminders',remindId])
+  }
+
+  deleteRemind (remind:any) {
+    this.reminds = this.reminds.filter(u =>u.id !== remind)
+    this.reqService.deleteRemind(remind).subscribe()
   }
 }

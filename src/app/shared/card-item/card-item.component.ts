@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {DxButtonModule} from "devextreme-angular";
 
 @Component({
@@ -11,8 +11,15 @@ import {DxButtonModule} from "devextreme-angular";
   styleUrl: './card-item.component.css'
 })
 export class CardItemComponent {
-/*  @Input() onDelete: () => void;
-  @Input() onEdit: () => void;*/
-  @Input() onDelete: () => void;
-  @Input() onEdit: () => void;
+  /* @Output() *название метода* = new EventEmitter<>()*/
+  /* (click) = emitEvent()*/
+  @Input() delete !: () => void
+  @Input() edit !: () => void
+
+  onDelete() {
+    this.delete()
+  }
+  onEdit() {
+    this.edit()
+  }
 }

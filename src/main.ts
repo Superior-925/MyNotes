@@ -10,6 +10,8 @@ import {HttpClientInMemoryWebApiModule} from "angular-in-memory-web-api";
 import {HttpClientModule} from "@angular/common/http";
 import {NotesDetailsComponent} from "./app/components/notes/notes-details/notes-details.component";
 import {NoteAddComponent} from "./app/components/notes/note-add/note-add.component";
+import {RemindAddComponent} from "./app/components/reminders/remind-add/remind-add.component";
+import {RemindDetailsComponent} from "./app/components/reminders/remind-details/remind-details.component";
 
 
 
@@ -23,6 +25,8 @@ bootstrapApplication(AppComponent, {
       { path: 'notes/:id', component: NotesDetailsComponent },
       { path: 'add', component: NoteAddComponent },
       { path: 'reminders', component: RemindersComponent, title: 'Reminders' },
+      { path: 'reminders/add', component: RemindAddComponent },
+      { path: 'reminders/:id', component: RemindDetailsComponent },
       { path: 'tags', component: TagsComponent, title: 'Tags' },
       { path: '**', component: NotesComponent },
     ])),

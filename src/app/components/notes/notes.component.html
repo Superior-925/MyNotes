@@ -1,4 +1,4 @@
-<app-section-wrapper [callbackFunction]="addNote">
+<app-section-wrapper [addFunc]="addNote">
     <div *ngFor="let note of notes" class="card-container">
       <app-card
         [note]="note"

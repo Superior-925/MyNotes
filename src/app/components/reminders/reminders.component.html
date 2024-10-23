@@ -1,1 +1,9 @@
-<p>reminders works!</p>
+<app-section-wrapper [addFunc]="addRemind">
+  <div *ngFor="let remind of reminds" class="card-container">
+    <app-remind-card
+      [remind]="remind"
+      [deleteParentFunc]="deleteRemind"
+      [editParentFunc]="remindDetails">
+    </app-remind-card>
+  </div>
+</app-section-wrapper>

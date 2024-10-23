@@ -29,10 +29,7 @@ export class NotesComponent {
   notes: Note[] = []
   loading: boolean = false
 
-
-
-
-constructor(private reqService: RequestService, private router: Router) {
+  constructor(private reqService: RequestService, private router: Router) {
     this.getNotes()
   }
 
@@ -48,7 +45,8 @@ constructor(private reqService: RequestService, private router: Router) {
       })
   }
 
-  addNote(): void {
+  addNote =(): void  =>{
+    debugger
     this.router.navigate(['add'])
   }
 

@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {DxButtonModule} from "devextreme-angular";
 
 @Component({
@@ -11,5 +11,9 @@ import {DxButtonModule} from "devextreme-angular";
   styleUrl: './section-wrapper.component.css'
 })
 export class SectionWrapperComponent {
-  @Input() callbackFunction!: () => void;
+  @Input() addFunc!: () => void;
+
+  onAdd(): void {
+    this.addFunc()
+  }
 }
