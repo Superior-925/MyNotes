@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {DxButtonModule} from "devextreme-angular";
 import {Remind} from "../../models/remind";
+import {DisplayableItem} from "../../models/DisplayableItem";
 
 @Component({
   selector: 'app-card-item',
@@ -12,9 +13,7 @@ import {Remind} from "../../models/remind";
   styleUrl: './card-item.component.css'
 })
 export class CardItemComponent {
-  /* @Output() *название метода* = new EventEmitter<>()*/
-  /* (click) = emitEvent()*/
-  @Input() remind!: Remind;
+  @Input() item!: DisplayableItem;
   @Input() delete !: () => void
   @Input() edit !: () => void
 

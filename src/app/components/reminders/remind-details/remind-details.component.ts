@@ -64,31 +64,6 @@ export class RemindDetailsComponent {
   }
 
 
-/*  save(): void {
-    // Преобразование идентификаторов тегов в объекты тегов
-    const tagIds = this.remind.tags;
-    const tagObjects = tagIds
-      .map(id => typeof id === 'number'
-        ? this.tags.find(tag => tag.id === id)
-        : id);
-    // Удаление undefined значений из массива tagObjects
-    const filteredTagObjects = tagObjects
-      .filter(tag => tag !== undefined) as Tag[];
-
-    // Обновление объекта remind с преобразованными тегами
-    const updatedRemind: Remind = {
-      ...this.remind,
-      tags: filteredTagObjects,
-    };
-
-    this.reqService
-      .updateRemind(updatedRemind)
-      .subscribe(() => this.router.navigate(['reminders']));
-
-    console.log(`Edited remind:`);
-    console.log(updatedRemind);
-  }*/
-
   save(): void {
     // Сначала получаем текущие выбранные ID тегов из remind
     const selectedTagIds = this.remind.tags.map(tag => tag.id);

@@ -1,1 +1,6 @@
-<p>tags-card works!</p>
+<app-card-item
+  [item]="tag"
+  [delete]="onDelete"
+  [edit]="onEdit">
+  <h2>{{ tag.tagTitle }}</h2>
+</app-card-item>

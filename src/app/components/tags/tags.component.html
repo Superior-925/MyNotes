@@ -1,1 +1,9 @@
-<p>tags works!</p>
+<app-section-wrapper [ButtonName]="'Add new Tag'" [addFunc]="addTag">
+  <div *ngFor="let tag of tags" class="card-container">
+    <app-tags-card
+      [tag]="tag"
+      [deleteParentFunc]="deleteTag"
+      [editParentFunc]="tagDetails">
+    </app-tags-card>
+  </div>
+</app-section-wrapper>
