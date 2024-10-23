@@ -39,7 +39,7 @@ export class TagsComponent {
   }
 
   addTag = (): void => {
-    this.router.navigate(['tags'])
+    this.router.navigate(['tags/add'])
   }
   tagDetails = (tag: Tag) => {
     const tagId = tag.id;

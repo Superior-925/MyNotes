@@ -7,6 +7,8 @@ import {NotesDetailsComponent} from "./components/notes/notes-details/notes-deta
 import {NoteAddComponent} from "./components/notes/note-add/note-add.component";
 import {RemindAddComponent} from "./components/reminders/remind-add/remind-add.component";
 import {RemindDetailsComponent} from "./components/reminders/remind-details/remind-details.component";
+import {TagsDetailsComponent} from "./components/tags/tags-details/tags-details.component";
+import {TagsAddComponent} from "./components/tags/tags-add/tags-add.component";
 
 export const ROUTES: Routes = [
   { path: '', component: NotesComponent, title: 'Notes' },
@@ -17,6 +19,8 @@ export const ROUTES: Routes = [
   { path: 'reminders/add', component: RemindAddComponent },
   { path: 'reminders/:id', component: RemindDetailsComponent },
   { path: 'tags', component: TagsComponent, title: 'Tags' },
+  { path: 'tags/:id', component: TagsDetailsComponent },
+  { path: 'tags/add', component: TagsAddComponent},
   { path: '**', component: NotesComponent },
 ];
 

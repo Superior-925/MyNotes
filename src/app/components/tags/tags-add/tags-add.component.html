@@ -1,1 +1,18 @@
-<p>tags-add works!</p>
+<dx-popup id="noteAddPopup"
+          [visible]="isPopupVisible"
+          (closeOnOutsideClickChange)="closePopup"
+          [showTitle]="true"
+          title="Add Remind"
+          [width]="500"
+          [height]="600">
+  <div class="note-edit-form" >
+    <form
+      [formGroup]="remindForm"
+      (ngSubmit)="save()"
+      *ngIf="remindForm" >
+      <dx-text-box formControlName="tagTitle" placeholder="Title"></dx-text-box>
+      <dx-button text="Save" type="success" [useSubmitBehavior]="true"></dx-button>
+    </form>
+  </div>
+</dx-popup>
+

@@ -12,6 +12,8 @@ import {NotesDetailsComponent} from "./app/components/notes/notes-details/notes-
 import {NoteAddComponent} from "./app/components/notes/note-add/note-add.component";
 import {RemindAddComponent} from "./app/components/reminders/remind-add/remind-add.component";
 import {RemindDetailsComponent} from "./app/components/reminders/remind-details/remind-details.component";
+import {TagsDetailsComponent} from "./app/components/tags/tags-details/tags-details.component";
+import {TagsAddComponent} from "./app/components/tags/tags-add/tags-add.component";
 
 
 
@@ -28,6 +30,8 @@ bootstrapApplication(AppComponent, {
       { path: 'reminders/add', component: RemindAddComponent },
       { path: 'reminders/:id', component: RemindDetailsComponent },
       { path: 'tags', component: TagsComponent, title: 'Tags' },
+      { path: 'tags/add', component: TagsAddComponent},
+      { path: 'tags/:id', component: TagsDetailsComponent },
       { path: '**', component: NotesComponent },
     ])),
   ]
