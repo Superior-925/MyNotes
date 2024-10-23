@@ -1,21 +1,22 @@
 import {Injectable} from '@angular/core';
 import {InMemoryDbService} from "angular-in-memory-web-api";
 import {Note} from "../models/note";
+import {Remind, Tag} from "../models";
 
 @Injectable({
   providedIn: 'root'
 })
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
-    const tags = [
-      {id:1, title:'👛 Покупки'},
-      {id:2, title:'📖 Почитать'},
-      {id:3, title:'📺 Посмотреть'},
-      {id:4, title:'🗂️ Документы'},
-      {id:5, title:'🧹 Домашние дела'},
-      {id:6, title:'🔥 Продуктивности'},
+    const tags: Tag[] = [
+      {id:1, tagTitle:'👛 Покупки'},
+      {id:2, tagTitle:'📖 Почитать'},
+      {id:3, tagTitle:'📺 Посмотреть'},
+      {id:4, tagTitle:'🗂️ Документы'},
+      {id:5, tagTitle:'🧹 Домашние дела'},
+      {id:6, tagTitle:'🔥 Продуктивности'},
     ]
-    const notes = [
+    const notes:Note[] = [
       {
         id: 1,
         title: 'Task',
@@ -41,7 +42,7 @@ export class InMemoryDataService implements InMemoryDbService {
 
       },
     ];
-    const reminders = [
+    const reminders :Remind[] = [
       {
         id: 1,
         title: 'Сделать тестовое задание 🌈',

@@ -13,6 +13,8 @@ import {RequestRemindService} from "../../../service/reminds-service.service";
 import {Router} from "@angular/router";
 import {Remind} from "../../../models/remind";
 import {catchError, throwError} from "rxjs";
+import {TagsServiceService} from "../../../service/tags-service.service";
+import {Tag} from "../../../models";
 
 @Component({
   selector: 'app-remind-add',
@@ -35,18 +37,24 @@ import {catchError, throwError} from "rxjs";
 export class RemindAddComponent {
   remindForm: FormGroup
   isPopupVisible = true;
+  tags:Tag[] = []
 
   constructor(
     private formBuilder: FormBuilder,
     private reqService: RequestRemindService,
-    private router: Router
+    private router: Router,
+    private  tagService: TagsServiceService
   ) {
     this.remindForm = this.formBuilder.group({
       title: ['', Validators.required],
       tags: [''],
       deadline: [null, Validators.required],
       remindMe: [null, Validators.required]
+    })
 
+    this.tagService.getTags().subscribe((tags) => {
+      this.tags = tags
+      console.log(`Tags from add ${this.tags}`)
     })
   }
 

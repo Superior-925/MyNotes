@@ -8,6 +8,8 @@ import {RequestRemindService} from "../../service/reminds-service.service";
 import {Router} from "@angular/router";
 import {SectionWrapperComponent} from "../../shared/section-wrapper/section-wrapper.component";
 import {RemindCardComponent} from "./remind-card/remind-card.component";
+import {TagsServiceService} from "../../service/tags-service.service";
+import {Tag} from "../../models";
 
 @Component({
   selector: 'app-reminders',
@@ -26,12 +28,15 @@ import {RemindCardComponent} from "./remind-card/remind-card.component";
 export class RemindersComponent {
   reminds: Remind[] = []
   loading: boolean = false
+  tags: Tag[] = []
 
   constructor(
     private reqService: RequestRemindService,
-    private router: Router
+    private router: Router,
+    private tagService: TagsServiceService
   ) {
     this.getReminds()
+    this.getTags()
   }
 
   getReminds() {
@@ -62,4 +67,9 @@ export class RemindersComponent {
     this.reminds = this.reminds.filter(u =>u.id !== remind.id)
     this.reqService.deleteRemind(remind).subscribe()
   }
-}
+   getTags = () => {
+    this.tagService.getTags().subscribe((tags) => {
+      this.tags = tags
+      console.log(`From parent: ${this.tags}`)
+   })
+}}
