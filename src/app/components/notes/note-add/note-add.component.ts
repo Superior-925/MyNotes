@@ -44,9 +44,6 @@ export class NoteAddComponent implements OnInit {
     this.noteForm = this.formBuilder.group({
       title: ['', Validators.required],
       content: ['', Validators.required],
-      tags: [''], // Опционально, можешь добавить валидаторы
-      date: [null, Validators.required],
-      deadline: [null, Validators.required],
     })
   }
 
@@ -66,9 +63,6 @@ export class NoteAddComponent implements OnInit {
       id: 0,
       title: this.f.title.value,
       content: this.f.content.value,
-      tags: this.f.tags.value ? this.f.tags.value.split(',') : [],
-      date: this.f.date.value,
-      deadline: this.f.deadline.value,
     };
 
 

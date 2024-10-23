@@ -81,11 +81,6 @@ export class RemindAddComponent {
       .subscribe(() => this.router.navigate(['reminders']));
 
 
-    /*this.reqService
-      .addRemind(remind as Remind)
-      .subscribe(() => this.router.navigate(['reminders']))
-    this.isPopupVisible = false*/
-
   }
 
   closePopup(): void {

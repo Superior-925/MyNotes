@@ -12,15 +12,6 @@
       *ngIf="noteForm" >
       <dx-text-box formControlName="title" placeholder="Title"></dx-text-box>
       <dx-text-area formControlName="content" placeholder="Content"></dx-text-area>
-      <dx-tag-box formControlName="tags" placeholder="Tags"></dx-tag-box>
-      <dx-date-box formControlName="date"
-                   placeholder="Date"
-                   type="datetime"
-                   displayFormat="dd.MM.yyyy HH:mm"></dx-date-box>
-      <dx-date-box formControlName="deadline"
-                   placeholder="Deadline"
-                   type="datetime"
-                   displayFormat="dd.MM.yyyy HH:mm"></dx-date-box>
       <dx-button text="Save" type="success" [useSubmitBehavior]="true"></dx-button>
     </form>
   </div>
