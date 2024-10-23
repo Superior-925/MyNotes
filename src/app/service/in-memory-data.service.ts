@@ -7,6 +7,14 @@ import {Note} from "../models/note";
 })
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
+    const tags = [
+      {id:1, title:'👛 Покупки'},
+      {id:2, title:'📖 Почитать'},
+      {id:3, title:'📺 Посмотреть'},
+      {id:4, title:'🗂️ Документы'},
+      {id:5, title:'🧹 Домашние дела'},
+      {id:6, title:'🔥 Продуктивности'},
+    ]
     const notes = [
       {
         id: 1,
@@ -45,7 +53,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 1,
         title: 'Сделать тестовое задание 🌈',
-        tags: ['critical'],
+        tags: [tags[5].title],
         deadline: new Date('2024-04-11T17:00:00'),
         remindMe: new Date('2024-03-11T10:00:00'),
 
@@ -53,26 +61,48 @@ export class InMemoryDataService implements InMemoryDbService {
       {
         id: 2,
         title: 'Не забыть поспать 🌚',
-        tags: ['high'],
+        tags: [tags[5].title],
         deadline: new Date('2024-03-11T10:00:00'),
         remindMe: new Date('2024-04-11T17:00:00'),
       },
       {
         id: 3,
         title: 'Не забыть выпить норму воды 💧',
-        tags: ['medium'],
+        tags: [tags[5].title],
         deadline: new Date('2024-04-11T17:00:00'),
         remindMe: new Date('2024-03-11T10:00:00'),
       },
       {
         id: 4,
         title: 'Потренить 💪💪💪 ',
-        tags: ['low'],
+        tags: [tags[5].title],
+        deadline: new Date('2024-04-11T17:00:00'),
+        remindMe: new Date('2024-03-11T10:00:00'),
+      },
+      {
+        id: 5,
+        title: 'Американский Психопат ',
+        tags: [tags[2].title,tags[1].title],
+        deadline: new Date('2024-04-11T17:00:00'),
+        remindMe: new Date('2024-03-11T10:00:00'),
+      },
+      {
+        id: 6,
+        title: 'Подать показания водомеров ',
+        tags: [tags[3].title,tags[1].title],
+        deadline: new Date('2024-04-11T17:00:00'),
+        remindMe: new Date('2024-03-11T10:00:00'),
+      },
+      {
+        id: 7,
+        title: 'Заказать пряжу на игрушки',
+        tags: [tags[0].title],
         deadline: new Date('2024-04-11T17:00:00'),
         remindMe: new Date('2024-03-11T10:00:00'),
       },
     ];
-    return { notes,reminders }
+
+    return { notes,reminders, tags }
   }
 
   generateID(notes: Note[]): number {
