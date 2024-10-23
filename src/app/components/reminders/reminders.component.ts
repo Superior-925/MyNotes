@@ -58,8 +58,8 @@ export class RemindersComponent {
     this.router.navigate(['reminders', remindId]);
   }
 
-  deleteRemind (remind:any) {
-    this.reminds = this.reminds.filter(u =>u.id !== remind)
+  deleteRemind = (remind:Remind) => {
+    this.reminds = this.reminds.filter(u =>u.id !== remind.id)
     this.reqService.deleteRemind(remind).subscribe()
   }
 }
