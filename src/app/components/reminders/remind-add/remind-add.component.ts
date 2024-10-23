@@ -54,7 +54,6 @@ export class RemindAddComponent {
 
     this.tagService.getTags().subscribe((tags) => {
       this.tags = tags
-      console.log(`Tags from add ${this.tags}`)
     })
   }
 
@@ -77,12 +76,10 @@ export class RemindAddComponent {
     const remind: Remind = {
       id: 0,
       title: this.f.title.value,
-/*      tags: this.f.tags.value ? this.f.tags.value.split(',') : [],*/
       tags: tagObjects,
       deadline: this.f.deadline.value,
       remindMe: this.f.remindMe.value,
     };
-    console.log('Saving object:', remind);
 
     this.reqService.addRemind(remind as Remind)
       .pipe(

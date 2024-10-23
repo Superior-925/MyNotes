@@ -63,9 +63,35 @@ export class RemindDetailsComponent {
     this.router.navigate(['reminders'])
   }
 
-  save():void {
+/*  save():void {
+
     this.reqService
       .updateRemind(this.remind)
       .subscribe(() => this.router.navigate(['reminders']))
+    console.log(`Edited remind:` )
+    console.log(this.remind )
+  }*/
+
+  save(): void {
+    // Преобразование идентификаторов тегов в объекты тегов
+    const tagIds = this.remind.tags;
+    const tagObjects = tagIds.map(id => typeof id === 'number' ? this.tags.find(tag => tag.id === id) : id);
+    // Удаление undefined значений из массива tagObjects
+    const filteredTagObjects = tagObjects.filter(tag => tag !== undefined) as Tag[];
+
+    // Обновление объекта remind с преобразованными тегами
+    const updatedRemind: Remind = {
+      ...this.remind,
+      tags: filteredTagObjects,
+    };
+
+    this.reqService
+      .updateRemind(updatedRemind)
+      .subscribe(() => this.router.navigate(['reminders']));
+
+    console.log(`Edited remind:`);
+    console.log(updatedRemind);
   }
+
+
 }
