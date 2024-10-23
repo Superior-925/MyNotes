@@ -63,7 +63,7 @@ export class TagsAddComponent {
 
     const tag: Tag = {
       id: 0,
-      tagTitle: this.f.title.value,
+      tagTitle: this.f.tagTitle.value,
     };
 
     this.tagService.addTag(tag as Tag)
