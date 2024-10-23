@@ -18,22 +18,17 @@ import {Remind} from "../../../models/remind";
 export class RemindCardComponent {
   //получаем от родителя массив
   @Input() remind!: Remind;
-  @Input() deleteParentFunc!: (remindId: number) => void;
+  @Input() deleteParentFunc!: (remind: Remind) => void;
   @Input() editParentFunc!: (remind: Remind) => void;
-  //передаем свойства родителю app-card-item (функции для кнопок)
-/*  @Output() deleteRemind = new EventEmitter<(Remind) => void>();
-  @Output() editRemind = new EventEmitter<(Remind) => void>();*/
 
 
-  ngOnInit(): void {
+  ngOnInit (): void {
     console.log(this.remind)
   }
-
-  onDelete(): void {
-    this.deleteParentFunc(this.remind.id)
+  onDelete =(): void => {
+    this.deleteParentFunc(this.remind)
   }
-
-  onEdit(): void {
+  onEdit =(): void=> {
     this.editParentFunc(this.remind)
   }
 }

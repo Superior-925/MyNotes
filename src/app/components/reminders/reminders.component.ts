@@ -49,13 +49,13 @@ export class RemindersComponent {
     )
   }
 
-  addRemind():void {
+  addRemind=():void => {
     this.router.navigate(['reminders/add'])
   }
 
-  remindDetails(remind:Remind) {
-    const remindId= remind.id
-    this.router.navigate(['reminders',remindId])
+  remindDetails = (remind: Remind) => {
+    const remindId = remind.id;
+    this.router.navigate(['reminders', remindId]);
   }
 
   deleteRemind (remind:any) {

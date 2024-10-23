@@ -50,12 +50,12 @@ export class NotesComponent {
     this.router.navigate(['add'])
   }
 
-  noteDetails(note: Note) {
+  noteDetails=(note: Note):void =>  {
     const noteId = note.id
     this.router.navigate(['notes', noteId])
   }
 
-  deleteNote(note: any) {
+  deleteNote = (note: any):void => {
     this.notes = this.notes.filter(u => u !== note)
     this.reqService.deleteNote(note).subscribe()
   }
