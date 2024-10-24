@@ -1,6 +1,6 @@
-/*::ng-deep .demo-container {
+::ng-deep .demo-container {
   overflow: visible;
-}*/
+}
 
 ::ng-deep .flex-container {
   display: flex;
@@ -14,7 +14,7 @@
 ::ng-deep #toolbar {
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.08);
   padding: 5px 10px;
-  z-index: 10000;
+  z-index: 1;
 }
 
 ::ng-deep .dx-list.panel-list {

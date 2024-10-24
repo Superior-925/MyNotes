@@ -25,8 +25,6 @@ export class RemindCardComponent {
 
 
   ngOnInit (): void {
-    console.log(this.remind)
-    console.log(this.tags)
   }
   onDelete =(): void => {
     this.deleteParentFunc(this.remind.id)

@@ -32,12 +32,15 @@ import {LoadingComponent} from "../../shared";
 export class RemindersComponent  extends BaseDataComponent<Remind> implements OnInit{
 
   tags: Tag[] = []
+  currentRemind: Remind | null = null; // Для отображения в Popup
+
 
   constructor(
     protected override dataService: RequestRemindService,
     protected tagService: TagsServiceService,
     protected override router: Router,
-    protected override loadingService: LoadingService
+    protected override loadingService: LoadingService,
+    private remindServ: RequestRemindService
   ) {
     super(dataService, router,loadingService);
   }
@@ -45,6 +48,7 @@ export class RemindersComponent  extends BaseDataComponent<Remind> implements On
   override ngOnInit(): void {
     super.ngOnInit(); // Загрузка напоминаний
     this.loadTags(); // Загрузка тегов
+    this.setupReminders();
   }
 
   loadTags(): void {
@@ -70,6 +74,20 @@ export class RemindersComponent  extends BaseDataComponent<Remind> implements On
   deleteRemind = (id:number) => {
     this.deleteItem(id)
   }
+
+  setupReminders(): void {
+    this.items.forEach(remind => {
+      this.remindServ.setReminder(remind);
+    });
+
+    this.remindServ.remind$.subscribe(remind => {
+      if (remind) {
+        this.currentRemind = remind; // Отображаем напоминание в Popup
+        // Здесь может быть логика для отображения DevExtreme Popup
+      }
+    });
+  }
+
   getTags = () => {
     this.tagService.getAll().subscribe((tags) => {
       this.tags = tags

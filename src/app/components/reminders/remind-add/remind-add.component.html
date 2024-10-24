@@ -28,6 +28,17 @@
                    displayFormat="dd.MM.yyyy HH:mm"></dx-date-box>
       <dx-button text="Save" type="success" [useSubmitBehavior]="true"></dx-button>
     </form>
+    <dx-popup *ngIf="showNotification && currentRemind"
+              [visible]="showNotification"
+              [showTitle]="true"
+              title="Напоминание о заметке"
+              [width]="250"
+              [height]="150">
+      <div *ngIf="currentRemind" class="remind-notification">
+        НАПОМИНАЮ О: {{ currentRemind.title }}
+      </div>
+    </dx-popup>
   </div>
 </dx-popup>
+
 
