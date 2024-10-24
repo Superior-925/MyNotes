@@ -20,7 +20,7 @@ export class RemindCardComponent {
   //получаем от родителя массив
   @Input() remind!: Remind;
   @Input() tags!: Tag[]; // Добавляем список всех тегов
-  @Input() deleteParentFunc!: (remind: Remind) => void;
+  @Input() deleteParentFunc!: (id: number) => void;
   @Input() editParentFunc!: (remind: Remind) => void;
 
 
@@ -29,7 +29,7 @@ export class RemindCardComponent {
     console.log(this.tags)
   }
   onDelete =(): void => {
-    this.deleteParentFunc(this.remind)
+    this.deleteParentFunc(this.remind.id)
   }
   onEdit =(): void=> {
     this.editParentFunc(this.remind)

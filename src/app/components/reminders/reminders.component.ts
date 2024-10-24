@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CommonModule} from "@angular/common";
 import {NotesDetailsComponent} from "../notes/notes-details/notes-details.component";
 import {NoteAddComponent} from "../notes/note-add/note-add.component";
@@ -10,6 +10,7 @@ import {SectionWrapperComponent} from "../../shared/section-wrapper/section-wrap
 import {RemindCardComponent} from "./remind-card/remind-card.component";
 import {TagsServiceService} from "../../service/tags-service.service";
 import {Tag} from "../../models";
+import {BaseDataComponent} from "../based/based-data.component";
 
 @Component({
   selector: 'app-reminders',
@@ -25,7 +26,54 @@ import {Tag} from "../../models";
   templateUrl: './reminders.component.html',
   styleUrl: './reminders.component.css'
 })
-export class RemindersComponent {
+export class RemindersComponent  extends BaseDataComponent<Remind> implements OnInit{
+
+  tags: Tag[] = []
+
+  constructor(
+    protected override dataService: RequestRemindService,
+    protected tagService: TagsServiceService,
+    protected override router: Router
+  ) {
+    super(dataService, router);
+  }
+
+  override ngOnInit(): void {
+    super.ngOnInit(); // Загрузка напоминаний
+    this.loadTags(); // Загрузка тегов
+  }
+
+  loadTags(): void {
+    this.tagService.getAll().subscribe(
+      (tags: Tag[]) => {
+        this.tags = tags;
+      },
+      (error) => {
+        console.error("Failed to load tags", error);
+      }
+    );
+  }
+
+  addRemind=():void => {
+    this.addItem('reminders/add')
+  }
+
+  remindDetails = (remind: Remind) => {
+    const remindId = remind.id;
+    this.router.navigate(['reminders', remindId]);
+  }
+
+  deleteRemind = (id:number) => {
+    this.deleteItem(id)
+  }
+  getTags = () => {
+    this.tagService.getAll().subscribe((tags) => {
+      this.tags = tags
+      console.log(`From parent: ${this.tags}`)
+    })
+  }}
+
+/*export class RemindersComponent {
   reminds: Remind[] = []
   loading: boolean = false
   tags: Tag[] = []
@@ -46,7 +94,7 @@ export class RemindersComponent {
       (res:Remind[]) => {
         this.reminds = res
         this.loading = false
-        /*console.log(res)*/
+        /!*console.log(res)*!/
       }, (err) => {
         console.log(err)
         this.loading = false
@@ -72,4 +120,4 @@ export class RemindersComponent {
       this.tags = tags
       console.log(`From parent: ${this.tags}`)
    })
-}}
+}}*/
