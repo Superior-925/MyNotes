@@ -79,7 +79,9 @@ export class RemindAddComponent {
     }
 
     const tagIds = this.f.tags.value;
-    const tagObjects = tagIds.map((id:number) => this.tags.find(tag => tag.id === id));
+    const tagObjects = tagIds.map((id:number) =>
+      this.tags
+        .find(tag => tag.id === id));
 
     const remind: Remind = {
       id: 0,

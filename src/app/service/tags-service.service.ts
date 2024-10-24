@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Tag } from "../models";
 import { DataService } from "./data-service.service";
 import { HttpClient } from "@angular/common/http";
-import { BehaviorSubject, Observable, of, ReplaySubject, switchMap, tap } from "rxjs";
+import {  Observable,  ReplaySubject, switchMap, tap } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class TagsServiceService extends DataService<Tag> {
     this.loadTags(); // Загрузка тегов при инициализации
   }
 
-  private loadTags(): void {
+   loadTags(): void {
     this.getAll()
       .pipe(tap(tags => this.tagsCache$.next(tags)))
       .subscribe();
@@ -25,31 +25,36 @@ export class TagsServiceService extends DataService<Tag> {
     return this.tagsCache$.asObservable();
   }
 
-  updateTagInCache(updatedTag: Tag): void {
-    this.tagsCache$
-      .pipe(
-        switchMap(tags => {
-          const updatedTags = tags.map(tag => tag.id === updatedTag.id ? updatedTag : tag);
-          this.tagsCache$.next(updatedTags);
-          return of(updatedTags);
-        })
-      )
-      .subscribe();
-    // Также необходимо обновить тег на сервере
-    this.update(updatedTag).subscribe();
+  addTagToCache(newTag: Tag): void {
+    this.add(newTag).pipe(
+      switchMap(savedTag => {
+        return this.getCachedTags().pipe(
+          tap(tags => {
+            const updatedTags = [...tags, savedTag];
+            this.tagsCache$.next(updatedTags);
+          })
+        );
+      })
+    ).subscribe();
   }
 
-  deleteTagFromCache(tagId: number): void {
-    this.tagsCache$
-      .pipe(
-        switchMap(tags => {
-          const filteredTags = tags.filter(tag => tag.id !== tagId);
-          this.tagsCache$.next(filteredTags);
-          return of(filteredTags);
-        })
-      )
-      .subscribe();
-    // Также необходимо удалить тег на сервере
-    this.delete(tagId).subscribe();
+  updateTagInCache(updatedTag: Tag): void {
+    this.update(updatedTag).pipe(
+      switchMap(() => this.getCachedTags()),
+      tap(tags => {
+        const updatedTags = tags.map(tag => tag.id === updatedTag.id ? updatedTag : tag);
+        this.tagsCache$.next(updatedTags);
+      })
+    ).subscribe();
+  }
+
+  deleteTagFromCache(tagToDelete: Tag): void {
+    this.delete(tagToDelete.id).pipe(
+      switchMap(() => this.getCachedTags()),
+      tap(tags => {
+        const filteredTags = tags.filter(tag => tag.id !== tagToDelete.id);
+        this.tagsCache$.next(filteredTags);
+      })
+    ).subscribe();
   }
 }

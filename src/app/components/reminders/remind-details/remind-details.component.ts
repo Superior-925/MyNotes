@@ -31,8 +31,8 @@ import {TagsServiceService} from "../../../service/tags-service.service";
 export class RemindDetailsComponent {
   @Output() close = new EventEmitter<void>();
   @Input() remind!: Remind;
-  tags: Tag[] = []
 
+  tags: Tag[] = []
   isPopupVisible = false;
 
   constructor(
@@ -54,8 +54,6 @@ export class RemindDetailsComponent {
       this.tags = tags
     })
   }
-
-
 
   closePopup(): void {
     this.isPopupVisible = false;

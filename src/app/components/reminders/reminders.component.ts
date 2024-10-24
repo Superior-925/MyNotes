@@ -43,23 +43,14 @@ export class RemindersComponent  extends BaseDataComponent<Remind> implements On
     private remindServ: RequestRemindService
   ) {
     super(dataService, router,loadingService);
+    this.tagService.getAll().subscribe((tags:Tag[]) => {
+      this.tags = tags
+    })
   }
 
   override ngOnInit(): void {
     super.ngOnInit(); // Загрузка напоминаний
-    this.loadTags(); // Загрузка тегов
     this.setupReminders();
-  }
-
-  loadTags(): void {
-    this.tagService.getAll().subscribe(
-      (tags: Tag[]) => {
-        this.tags = tags;
-      },
-      (error) => {
-        console.error("Failed to load tags", error);
-      }
-    );
   }
 
   addRemind=():void => {
@@ -88,12 +79,7 @@ export class RemindersComponent  extends BaseDataComponent<Remind> implements On
     });
   }
 
-  getTags = () => {
-    this.tagService.getAll().subscribe((tags) => {
-      this.tags = tags
-      console.log(`From parent: ${this.tags}`)
-    })
-  }}
+}
 
 /*export class RemindersComponent {
   reminds: Remind[] = []
@@ -143,3 +129,15 @@ export class RemindersComponent  extends BaseDataComponent<Remind> implements On
       console.log(`From parent: ${this.tags}`)
    })
 }}*/
+
+
+/* loadTags(): void {
+   this.tagService.getAll().subscribe(
+     (tags: Tag[]) => {
+       this.tags = tags;
+     },
+     (error) => {
+       console.error("Failed to load tags", error);
+     }
+   );
+ }*/

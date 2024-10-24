@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Tag} from "../../models";
 import {TagsServiceService} from "../../service/tags-service.service";
 import {Router} from "@angular/router";
@@ -20,7 +20,7 @@ import {LoadingService} from "../../service/loader.service";
   templateUrl: './tags.component.html',
   styleUrl: './tags.component.css'
 })
-export class TagsComponent extends BaseDataComponent<Tag> {
+export class TagsComponent extends BaseDataComponent<Tag> implements OnInit{
   constructor(
     protected tagService: TagsServiceService,
     protected override router: Router,
@@ -41,39 +41,42 @@ export class TagsComponent extends BaseDataComponent<Tag> {
   deleteTag = (tag: Tag): void => {
     this.deleteItem(tag.id)
   }
-
-
 }
 
-/*tags: Tag[] = []
-loading: boolean = false
 
-constructor(private reqService: TagsServiceService, private router: Router) {
-  this.getTags()
-}
 
-getTags() {
-  this.loading = true;
-  this.reqService.getAll().subscribe(
-    (res: Tag[]) => {
-      this.tags = res;
-      console.log(this.tags)
-      this.loading = false
-    }, (err) => {
-      console.error(err)
-      this.loading = false
-    })
-}
 
-addTag = (): void => {
-  this.router.navigate(['tags/add'])
-}
-tagDetails = (tag: Tag) => {
-  const tagId = tag.id;
-  this.router.navigate(['tags', tagId]);
-}
 
-deleteTag = (tag: any): void => {
-  this.tags = this.tags.filter(u => u !== tag)
-  this.reqService.delete(tag).subscribe()
-}*/
+/*
+  constructor(
+    protected tagService: TagsServiceService,
+    protected override router: Router,
+    protected override loadingService: LoadingService
+  ) {
+    super(tagService, router,loadingService);
+  }
+
+  override ngOnInit() : void {
+    this.tagService.loadTags()
+  }
+
+  loadCachedTags(): void {
+    this.tagService.getCachedTags().subscribe(tags => {
+      this.items = tags; // Используем items из BaseDataComponent для хранения тегов
+    });
+  }
+
+  addTag = ():void => {
+    this.addItem('tags/add')
+    this.tagService.addTagToCache()
+  }
+
+  tagDetails = (tag: Tag) => {
+    const tagId = tag.id;
+    this.router.navigate(['tags', tagId]);
+  }
+
+  deleteTag = (tag: Tag): void => {
+    this.deleteItem(tag.id)
+  }
+*/

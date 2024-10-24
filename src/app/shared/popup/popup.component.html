@@ -1,0 +1,10 @@
+<dx-popup *ngIf="remind"
+          [visible]="true"
+          [showTitle]="true"
+          title="Напоминание о заметке"
+          [width]="250"
+          [height]="150">
+  <div class="remind-notification">
+    Вы просили напомнить о: {{ remind.title }}
+  </div>
+</dx-popup>
