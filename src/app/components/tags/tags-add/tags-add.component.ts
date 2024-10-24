@@ -66,7 +66,7 @@ export class TagsAddComponent {
       tagTitle: this.f.tagTitle.value,
     };
 
-    this.tagService.addTag(tag as Tag)
+    this.tagService.add(tag as Tag)
       .pipe(
         catchError(error => {
           console.error('Ошибка при добавлении напоминания:', error);

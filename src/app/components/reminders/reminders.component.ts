@@ -68,7 +68,7 @@ export class RemindersComponent {
     this.reqService.delete(remind.id).subscribe()
   }
    getTags = () => {
-    this.tagService.getTags().subscribe((tags) => {
+    this.tagService.getAll().subscribe((tags) => {
       this.tags = tags
       console.log(`From parent: ${this.tags}`)
    })

@@ -27,7 +27,7 @@ export class TagsComponent {
 
   getTags() {
     this.loading = true;
-    this.reqService.getTags().subscribe(
+    this.reqService.getAll().subscribe(
       (res: Tag[]) => {
         this.tags = res;
         console.log(this.tags)
@@ -48,7 +48,7 @@ export class TagsComponent {
 
   deleteTag = (tag: any): void => {
     this.tags = this.tags.filter(u => u !== tag)
-    this.reqService.deleteTag(tag).subscribe()
+    this.reqService.delete(tag).subscribe()
   }
 
 }

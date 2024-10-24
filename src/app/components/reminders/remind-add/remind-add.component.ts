@@ -52,7 +52,7 @@ export class RemindAddComponent {
       remindMe: [null, Validators.required]
     })
 
-    this.tagService.getTags().subscribe((tags) => {
+    this.tagService.getAll().subscribe((tags:Tag[]) => {
       this.tags = tags
     })
   }

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Note} from "../models/note";
+import {Note} from "../models";
 import {HttpClient, } from "@angular/common/http";
 import {DataService} from "./data-service.service";
 

@@ -40,7 +40,7 @@ export class TagsDetailsComponent {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
-      this.tagsService.getTag(params['id']).subscribe((res:Tag) =>{
+      this.tagsService.get(params['id']).subscribe((res:Tag) =>{
         this.tag =res;
         this.isPopupVisible = true
       })
@@ -54,7 +54,7 @@ export class TagsDetailsComponent {
 
   save(): void {
 
-    this.tagsService.updateTag(this.tag).subscribe(() => {
+    this.tagsService.update(this.tag).subscribe(() => {
       this.router.navigate(['tags']);
       this.closePopup();
     });

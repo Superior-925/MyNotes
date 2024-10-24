@@ -50,7 +50,7 @@ export class RemindDetailsComponent {
       })
     })
 
-    this.tagsService.getTags().subscribe((tags) => {
+    this.tagsService.getAll().subscribe((tags) => {
       this.tags = tags
     })
   }
