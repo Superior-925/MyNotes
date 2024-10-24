@@ -49,7 +49,7 @@ export class RemindersComponent  extends BaseDataComponent<Remind> implements On
   }
 
   override ngOnInit(): void {
-    super.ngOnInit(); // Загрузка напоминаний
+    super.ngOnInit();
     this.setupReminders();
   }
 

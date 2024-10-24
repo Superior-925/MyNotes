@@ -59,11 +59,10 @@ export class RequestRemindService extends  DataService<Remind> {
   deleteTagFromReminds(tagId: number): Observable<any> {
     return this.getAll().pipe(
       switchMap(reminds => {
-        const updatedReminds = reminds.map(remind => {
-          remind.tags = remind.tags.filter(tag => tag.id !== tagId);
-          return remind;
-        });
-        // Аналогично обновляем напоминания в базе данных
+        const updatedReminds = reminds.map(remind => ({
+          ...remind,
+          tags: remind.tags.filter(tag => tag.id !== tagId),
+        }));
         return this.updateRemindsInDb(updatedReminds);
       })
     );
@@ -71,3 +70,16 @@ export class RequestRemindService extends  DataService<Remind> {
 
 
 }
+/*
+deleteTagFromReminds(tagId: number): Observable<any> {
+  return this.getAll().pipe(
+    switchMap(reminds => {
+      const updatedReminds = reminds.map(remind => {
+        remind.tags = remind.tags.filter(tag => tag.id !== tagId);
+        return remind;
+      });
+      // Аналогично обновляем напоминания в базе данных
+      return this.updateRemindsInDb(updatedReminds);
+    })
+  );
+}*/

@@ -13,10 +13,9 @@
       {{ remind.remindMe | date: 'dd.MM.yyyy,HH:mm' }}
     </span>
   <ul *ngIf="remind.tags && remind.tags.length > 0">
-<li *ngFor="let tag of remind.tags">{{ tag.tagTitle }}</li>
+    <li *ngFor="let tag of remind.tags">
+      {{ tag.tagTitle }}
+    </li>
   </ul>
-</app-card-item>
-<!--
-<li *ngFor="let tag of remind.tags">{{ tag }}</li>-->
 
-<!--  <li *ngFor="let tagId of remind.tags">{{ getTagTitles(remind.tags) }}</li>-->
+</app-card-item>
