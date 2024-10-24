@@ -46,7 +46,7 @@ export class RemindAddComponent {
     private formBuilder: FormBuilder,
     private reqService: RequestRemindService,
     private router: Router,
-    private  tagService: TagsServiceService
+    private tagService: TagsServiceService
   ) {
     this.remindForm = this.formBuilder.group({
       title: ['', Validators.required],
@@ -54,11 +54,8 @@ export class RemindAddComponent {
       deadline: [null, Validators.required],
       remindMe: [null, Validators.required]
     })
-
-    this.tagService.getAll().subscribe((tags:Tag[]) => {
-      this.tags = tags
-    })
   }
+
 
   get f(): any {
     return this.remindForm.controls;
@@ -69,6 +66,10 @@ export class RemindAddComponent {
       this.currentRemind = remind;
       this.showNotification = remind !== null;
     });
+
+    this.tagService.getAll().subscribe((tags:Tag[]) => {
+      this.tags = tags
+    })
     }
 
 
