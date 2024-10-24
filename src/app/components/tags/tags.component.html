@@ -1,5 +1,5 @@
 <app-section-wrapper [ButtonName]="'Add new Tag'" [addFunc]="addTag">
-  <div *ngFor="let tag of tags" class="card-container">
+  <div *ngFor="let tag of items" class="card-container">
     <app-tags-card
       [tag]="tag"
       [deleteParentFunc]="deleteTag"

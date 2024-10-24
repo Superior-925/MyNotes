@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {SectionWrapperComponent} from "../../shared";
 import {TagsCardComponent} from "./tags-card/tags-card.component";
 import {CommonModule} from "@angular/common";
+import {BaseDataComponent} from "../based/based-data.component";
 
 @Component({
   selector: 'app-tags',
@@ -17,38 +18,59 @@ import {CommonModule} from "@angular/common";
   templateUrl: './tags.component.html',
   styleUrl: './tags.component.css'
 })
-export class TagsComponent {
-  tags: Tag[] = []
-  loading: boolean = false
+export class TagsComponent extends BaseDataComponent<Tag> {
+  constructor(
+    protected tagService: TagsServiceService,
+    protected override router: Router) {
+    super(tagService, router);
 
-  constructor(private reqService: TagsServiceService, private router: Router) {
-    this.getTags()
   }
 
-  getTags() {
-    this.loading = true;
-    this.reqService.getAll().subscribe(
-      (res: Tag[]) => {
-        this.tags = res;
-        console.log(this.tags)
-        this.loading = false
-      }, (err) => {
-        console.error(err)
-        this.loading = false
-      })
+  addTag = () => {
+    this.addItem('tags/add')
   }
 
-  addTag = (): void => {
-    this.router.navigate(['tags/add'])
-  }
   tagDetails = (tag: Tag) => {
     const tagId = tag.id;
     this.router.navigate(['tags', tagId]);
   }
 
-  deleteTag = (tag: any): void => {
-    this.tags = this.tags.filter(u => u !== tag)
-    this.reqService.delete(tag).subscribe()
+  deleteTag = (tag: Tag): void => {
+    this.deleteItem(tag.id)
   }
 
+
 }
+
+/*tags: Tag[] = []
+loading: boolean = false
+
+constructor(private reqService: TagsServiceService, private router: Router) {
+  this.getTags()
+}
+
+getTags() {
+  this.loading = true;
+  this.reqService.getAll().subscribe(
+    (res: Tag[]) => {
+      this.tags = res;
+      console.log(this.tags)
+      this.loading = false
+    }, (err) => {
+      console.error(err)
+      this.loading = false
+    })
+}
+
+addTag = (): void => {
+  this.router.navigate(['tags/add'])
+}
+tagDetails = (tag: Tag) => {
+  const tagId = tag.id;
+  this.router.navigate(['tags', tagId]);
+}
+
+deleteTag = (tag: any): void => {
+  this.tags = this.tags.filter(u => u !== tag)
+  this.reqService.delete(tag).subscribe()
+}*/
