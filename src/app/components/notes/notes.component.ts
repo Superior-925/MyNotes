@@ -5,9 +5,10 @@ import { Router } from '@angular/router';
 import {BaseDataComponent} from "../based/based-data.component";
 import {CommonModule} from "@angular/common";
 import {NotesDetailsComponent} from "./notes-details/notes-details.component";
-import {CardComponent, SectionWrapperComponent} from "../../shared";
+import {CardComponent, LoadingComponent, SectionWrapperComponent} from "../../shared";
 import {DevExtremeModule} from "devextreme-angular";
 import {NoteAddComponent} from "./note-add/note-add.component";
+import {LoadingService} from "../../service/loader.service";
 
 
 @Component({
@@ -20,14 +21,16 @@ import {NoteAddComponent} from "./note-add/note-add.component";
     NotesDetailsComponent,
     NoteAddComponent,
     DevExtremeModule,
-    SectionWrapperComponent
+    SectionWrapperComponent,
+    LoadingComponent
   ],
 })
 export class NotesComponent extends BaseDataComponent<Note> {
   constructor(
     protected notesService: RequestService,
-    protected override router: Router) {
-    super(notesService, router);
+    protected override router: Router,
+    protected override loadingService: LoadingService) {
+    super(notesService, router,loadingService);
 
   }
 

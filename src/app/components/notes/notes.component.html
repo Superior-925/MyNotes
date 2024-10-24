@@ -1,3 +1,4 @@
+<app-loading [visible]="(loadingService.loading$ | async) ?? false"></app-loading>
 <app-section-wrapper [ButtonName]="'Add new Notes'" [addFunc]="addNote">
     <div *ngFor="let note of items" class="card-container">
       <app-card

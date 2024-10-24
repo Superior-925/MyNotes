@@ -1,6 +1,7 @@
-import { Directive, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Directive, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {Observable} from "rxjs";
+import {LoadingService} from "../../service/loader.service";
 
 export interface IDataService<T> {
   getAll: () => Observable<T[]>;
@@ -16,7 +17,10 @@ export abstract class BaseDataComponent<T> implements OnInit {
 
   constructor(
     protected dataService: IDataService<T>,
-    protected router: Router) {}
+    protected router: Router,
+    protected loadingService: LoadingService
+  ) {
+  }
 
 
   ngOnInit(): void {
@@ -24,11 +28,11 @@ export abstract class BaseDataComponent<T> implements OnInit {
   }
 
   loadData(): void {
-    this.loading = true;
+    this.loadingService.show()
     this.dataService.getAll().subscribe(
       (data: T[]) => {
         this.items = data;
-        this.loading = false;
+        this.loadingService.hide()
       },
       (error) => {
         console.error("Failed to load items", error);
@@ -38,12 +42,16 @@ export abstract class BaseDataComponent<T> implements OnInit {
   }
 
   addItem(path: string): void {
-  this.router.navigate([path]);
+    this.loadingService.show()
+    this.router.navigate([path]);
+    this.loadingService.hide()
   }
 
   deleteItem(id: number): void {
+    this.loadingService.show()
     this.dataService.delete(id).subscribe(() => {
       this.loadData();
     });
+    this.loadingService.hide()
   }
 }

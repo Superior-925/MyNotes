@@ -11,6 +11,8 @@ import {RemindCardComponent} from "./remind-card/remind-card.component";
 import {TagsServiceService} from "../../service/tags-service.service";
 import {Tag} from "../../models";
 import {BaseDataComponent} from "../based/based-data.component";
+import {LoadingService} from "../../service/loader.service";
+import {LoadingComponent} from "../../shared";
 
 @Component({
   selector: 'app-reminders',
@@ -22,6 +24,7 @@ import {BaseDataComponent} from "../based/based-data.component";
     DevExtremeModule,
     SectionWrapperComponent,
     RemindCardComponent,
+    LoadingComponent,
   ],
   templateUrl: './reminders.component.html',
   styleUrl: './reminders.component.css'
@@ -33,9 +36,10 @@ export class RemindersComponent  extends BaseDataComponent<Remind> implements On
   constructor(
     protected override dataService: RequestRemindService,
     protected tagService: TagsServiceService,
-    protected override router: Router
+    protected override router: Router,
+    protected override loadingService: LoadingService
   ) {
-    super(dataService, router);
+    super(dataService, router,loadingService);
   }
 
   override ngOnInit(): void {

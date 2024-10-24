@@ -1,3 +1,4 @@
+<app-loading [visible]="(loadingService.loading$ | async) ?? false"></app-loading>
 <app-section-wrapper [ButtonName]="'Add new Tag'" [addFunc]="addTag">
   <div *ngFor="let tag of items" class="card-container">
     <app-tags-card

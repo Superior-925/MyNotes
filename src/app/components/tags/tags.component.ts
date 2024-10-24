@@ -2,10 +2,11 @@ import {Component} from '@angular/core';
 import {Tag} from "../../models";
 import {TagsServiceService} from "../../service/tags-service.service";
 import {Router} from "@angular/router";
-import {SectionWrapperComponent} from "../../shared";
+import {LoadingComponent, SectionWrapperComponent} from "../../shared";
 import {TagsCardComponent} from "./tags-card/tags-card.component";
 import {CommonModule} from "@angular/common";
 import {BaseDataComponent} from "../based/based-data.component";
+import {LoadingService} from "../../service/loader.service";
 
 @Component({
   selector: 'app-tags',
@@ -13,7 +14,8 @@ import {BaseDataComponent} from "../based/based-data.component";
   imports: [
     SectionWrapperComponent,
     TagsCardComponent,
-    CommonModule
+    CommonModule,
+    LoadingComponent
   ],
   templateUrl: './tags.component.html',
   styleUrl: './tags.component.css'
@@ -21,8 +23,9 @@ import {BaseDataComponent} from "../based/based-data.component";
 export class TagsComponent extends BaseDataComponent<Tag> {
   constructor(
     protected tagService: TagsServiceService,
-    protected override router: Router) {
-    super(tagService, router);
+    protected override router: Router,
+    protected override loadingService: LoadingService) {
+    super(tagService, router,loadingService);
 
   }
 
