@@ -39,7 +39,7 @@ export class NotesDetailsComponent {
   ){}
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
-      this.reqService.getNote(params['id']).subscribe((res: Note) => {
+      this.reqService.get(params['id']).subscribe((res: Note) => {
         this.note = res;
         this.isPopupVisible = true; // Показываем модальное окно после загрузки заметки
       });
@@ -51,7 +51,7 @@ export class NotesDetailsComponent {
   }
   save(): void {
     this.reqService
-      .updateNote(this.note)
+      .update(this.note)
       .subscribe(() => this.router.navigate(['notes']))
   }
 

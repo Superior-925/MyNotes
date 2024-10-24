@@ -67,7 +67,7 @@ export class NoteAddComponent implements OnInit {
 
 
     this.reqService
-      .addNote(note as Note)
+      .add(note as Note)
       .subscribe(() => this.router.navigate(['notes']))
     this.isPopupVisible = false
 

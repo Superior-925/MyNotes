@@ -29,13 +29,16 @@ export class NotesComponent {
   notes: Note[] = []
   loading: boolean = false
 
-  constructor(private reqService: RequestService, private router: Router) {
+  constructor(
+    private reqService: RequestService,
+    private router: Router) {
+
     this.getNotes()
   }
 
   getNotes() {
     this.loading = true;
-    this.reqService.getNotes().subscribe(
+    this.reqService.getAll().subscribe(
       (res: Note[]) => {
         this.notes = res
         this.loading = false;
@@ -46,7 +49,6 @@ export class NotesComponent {
   }
 
   addNote =(): void  =>{
-    debugger
     this.router.navigate(['add'])
   }
 
@@ -57,6 +59,6 @@ export class NotesComponent {
 
   deleteNote = (note: any):void => {
     this.notes = this.notes.filter(u => u !== note)
-    this.reqService.deleteNote(note).subscribe()
+    this.reqService.add(note).subscribe()
   }
 }
