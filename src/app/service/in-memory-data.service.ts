@@ -8,14 +8,6 @@ import {Remind, Tag} from "../models";
 })
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
-    const tags: Tag[] = [
-      {id:1, tagTitle:'👛 Покупки'},
-      {id:2, tagTitle:'📖 Почитать'},
-      {id:3, tagTitle:'📺 Посмотреть'},
-      {id:4, tagTitle:'🗂️ Документы'},
-      {id:5, tagTitle:'🧹 Домашние дела'},
-      {id:6, tagTitle:'🔥 Продуктивности'},
-    ]
     const notes:Note[] = [
       {
         id: 1,
@@ -42,6 +34,14 @@ export class InMemoryDataService implements InMemoryDbService {
 
       },
     ];
+    const tags: Tag[] = [
+      {id:1, tagTitle:'👛 Покупки'},
+      {id:2, tagTitle:'📖 Почитать'},
+      {id:3, tagTitle:'📺 Посмотреть'},
+      {id:4, tagTitle:'🗂️ Документы'},
+      {id:5, tagTitle:'🧹 Домашние дела'},
+      {id:6, tagTitle:'🔥 Продуктивности'},
+    ]
     const reminders :Remind[] = [
       {
         id: 1,

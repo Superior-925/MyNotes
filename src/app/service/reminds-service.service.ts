@@ -2,7 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Remind} from "../models/remind";
 import {DataService} from "./data-service.service";
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject, Observable, of, switchMap} from "rxjs";
+import {Tag} from "../models";
 
 
 @Injectable({
@@ -33,4 +34,40 @@ export class RequestRemindService extends  DataService<Remind> {
   clearReminder() {
     this.remindSubject.next(null);
   }
+
+  private updateRemindsInDb(reminds: Remind[]): Observable<Remind[]> {
+    //return of(reminds);
+    return this.http.post<Remind[]>('api/reminders',reminds)
+  }
+
+
+  updateTagInReminds(updatedTag: Tag): Observable<any> {
+    return this.getAll().pipe(
+      switchMap(reminds => {
+        const updatedReminds = reminds.map(remind => {
+          const tagIndex = remind.tags.findIndex(tag => tag.id === updatedTag.id);
+          if (tagIndex > -1) {
+            remind.tags[tagIndex] = updatedTag;
+          }
+          return remind;
+        });
+        return this.updateRemindsInDb(updatedReminds);
+      })
+    );
+  }
+
+  deleteTagFromReminds(tagId: number): Observable<any> {
+    return this.getAll().pipe(
+      switchMap(reminds => {
+        const updatedReminds = reminds.map(remind => {
+          remind.tags = remind.tags.filter(tag => tag.id !== tagId);
+          return remind;
+        });
+        // Аналогично обновляем напоминания в базе данных
+        return this.updateRemindsInDb(updatedReminds);
+      })
+    );
+  }
+
+
 }

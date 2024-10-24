@@ -7,6 +7,7 @@ import {TagsCardComponent} from "./tags-card/tags-card.component";
 import {CommonModule} from "@angular/common";
 import {BaseDataComponent} from "../based/based-data.component";
 import {LoadingService} from "../../service/loader.service";
+import {RequestRemindService} from "../../service/reminds-service.service";
 
 @Component({
   selector: 'app-tags',
@@ -24,6 +25,7 @@ export class TagsComponent extends BaseDataComponent<Tag> implements OnInit{
   constructor(
     protected tagService: TagsServiceService,
     protected override router: Router,
+    protected remindService: RequestRemindService,
     protected override loadingService: LoadingService) {
     super(tagService, router,loadingService);
 
@@ -39,7 +41,9 @@ export class TagsComponent extends BaseDataComponent<Tag> implements OnInit{
   }
 
   deleteTag = (tag: Tag): void => {
+    this.remindService.deleteTagFromReminds(tag.id)
     this.deleteItem(tag.id)
+
   }
 }
 

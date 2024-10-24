@@ -10,6 +10,7 @@ import {
 import {Tag} from "../../../models";
 import {ActivatedRoute, Router} from "@angular/router";
 import {TagsServiceService} from "../../../service/tags-service.service";
+import {RequestRemindService} from "../../../service/reminds-service.service";
 
 @Component({
   selector: 'app-tags-details',
@@ -34,7 +35,8 @@ export class TagsDetailsComponent {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private tagsService : TagsServiceService
+    private tagsService : TagsServiceService,
+    private remindService: RequestRemindService
   ) {
   }
 
@@ -54,8 +56,11 @@ export class TagsDetailsComponent {
 
   save(): void {
 
-    this.tagsService.update(this.tag).subscribe(() => {
-      this.router.navigate(['tags']);
+    this.tagsService
+      .update(this.tag)
+      .subscribe(() => {
+        this.remindService.updateTagInReminds(this.tag)
+        this.router.navigate(['tags']);
       this.closePopup();
     });
   }

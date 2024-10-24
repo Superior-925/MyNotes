@@ -73,8 +73,7 @@ export class RemindersComponent  extends BaseDataComponent<Remind> implements On
 
     this.remindServ.remind$.subscribe(remind => {
       if (remind) {
-        this.currentRemind = remind; // Отображаем напоминание в Popup
-        // Здесь может быть логика для отображения DevExtreme Popup
+        this.currentRemind = remind;
       }
     });
   }
