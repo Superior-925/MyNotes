@@ -1,5 +1,7 @@
+
 <app-loading [visible]="(loadingService.loading$ | async) ?? false"></app-loading>
 <app-section-wrapper [ButtonName]="'Add new Remind'" [addFunc]="addRemind">
+  <ng-container *ngIf="items.length; else emptyListTemplate">
   <ng-container *ngIf="tags.length > 0">
   <div *ngFor="let remind of items" class="card-container">
     <app-remind-card
@@ -10,4 +12,10 @@
     </app-remind-card>
   </div>
   </ng-container>
+  </ng-container>
+ <ng-template #emptyListTemplate>
+  <div class="card-container empty-list">
+    Пока здесь пусто
+  </div>
+  </ng-template>
 </app-section-wrapper>

@@ -14,7 +14,6 @@ import {LoadingService} from "../../service/loader.service";
 @Component({
   selector: 'app-notes',
   standalone: true,
-  templateUrl: './notes.component.html',
   imports: [
     CommonModule,
     CardComponent,
@@ -24,6 +23,8 @@ import {LoadingService} from "../../service/loader.service";
     SectionWrapperComponent,
     LoadingComponent
   ],
+  templateUrl: './notes.component.html',
+  styleUrl: './notes.component.css'
 })
 export class NotesComponent extends BaseDataComponent<Note> {
   constructor(
@@ -33,7 +34,6 @@ export class NotesComponent extends BaseDataComponent<Note> {
     super(notesService, router,loadingService);
 
   }
-
 
   addNote = () =>{
     this.addItem('add')

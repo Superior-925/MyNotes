@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {DxDrawerModule, DxListModule, DxToolbarModule} from "devextreme-angular";
 import {Router, RouterModule} from "@angular/router";
-import {OpenedStateMode, PanelLocation, RevealMode} from "devextreme/ui/drawer";
 import {List, SidebarServiceService as Service} from '../../service/sidebar-service.service'
 
 @Component({

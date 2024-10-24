@@ -1,5 +1,6 @@
 <app-loading [visible]="(loadingService.loading$ | async) ?? false"></app-loading>
 <app-section-wrapper [ButtonName]="'Add new Notes'" [addFunc]="addNote">
+  <ng-container *ngIf="items.length; else emptyListTemplate">
     <div *ngFor="let note of items" class="card-container">
       <app-card
         [note]="note"
@@ -8,5 +9,17 @@
         class="app-card">
       </app-card>
     </div>
+  </ng-container>
+  <ng-template #emptyListTemplate>
+    <div class="card-container empty-list">
+      Пока здесь пусто
+    </div>
+  </ng-template>
 </app-section-wrapper>
+
+
+
+
+
+
 

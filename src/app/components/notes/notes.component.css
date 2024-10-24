@@ -25,3 +25,17 @@
   color: green;
 }*/
 
+.card-container-flex {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* или другое значение, в зависимости от вашей верстки */
+}
+
+.card-container.empty-state {
+  /* Стилизация сообщения о пустом состоянии */
+  text-align: center;
+  padding: 20px;
+  font-style: italic;
+  color: #666;
+}

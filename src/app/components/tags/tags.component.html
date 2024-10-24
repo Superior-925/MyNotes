@@ -1,5 +1,6 @@
 <app-loading [visible]="(loadingService.loading$ | async) ?? false"></app-loading>
 <app-section-wrapper [ButtonName]="'Add new Tag'" [addFunc]="addTag">
+  <ng-container *ngIf="items.length; else emptyListTemplate">
   <div *ngFor="let tag of items" class="card-container">
     <app-tags-card
       [tag]="tag"
@@ -7,4 +8,10 @@
       [editParentFunc]="tagDetails">
     </app-tags-card>
   </div>
+  </ng-container>
+  <ng-template #emptyListTemplate>
+    <div class="card-container empty-list">
+      Пока здесь пусто
+    </div>
+  </ng-template>
 </app-section-wrapper>
