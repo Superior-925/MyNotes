@@ -1,8 +1,8 @@
 <app-section-wrapper [ButtonName]="'Add new Notes'" [addFunc]="addNote">
-    <div *ngFor="let note of notes" class="card-container">
+    <div *ngFor="let note of items" class="card-container">
       <app-card
         [note]="note"
-        (deleteNote)="deleteNote($event)"
+        (deleteNote)="deleteNote(note.id)"
         (editNote)="noteDetails(note)"
         class="app-card">
       </app-card>

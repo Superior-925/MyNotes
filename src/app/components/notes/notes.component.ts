@@ -1,3 +1,53 @@
+import { Component } from '@angular/core';
+import { Note } from '../../models/note';
+import { RequestService } from '../../service/notes-service.service';
+import { Router } from '@angular/router';
+import {BaseDataComponent} from "../based/based-data.component";
+import {CommonModule} from "@angular/common";
+import {NotesDetailsComponent} from "./notes-details/notes-details.component";
+import {CardComponent, SectionWrapperComponent} from "../../shared";
+import {DevExtremeModule} from "devextreme-angular";
+import {NoteAddComponent} from "./note-add/note-add.component";
+
+
+@Component({
+  selector: 'app-notes',
+  standalone: true,
+  templateUrl: './notes.component.html',
+  imports: [
+    CommonModule,
+    CardComponent,
+    NotesDetailsComponent,
+    NoteAddComponent,
+    DevExtremeModule,
+    SectionWrapperComponent
+  ],
+})
+export class NotesComponent extends BaseDataComponent<Note> {
+  constructor(
+    protected notesService: RequestService,
+    protected override router: Router) {
+    super(notesService, router);
+
+  }
+
+
+  addNote = () =>{
+    this.addItem('add')
+  }
+
+  noteDetails =(note: Note):void =>  {
+    const noteId = note.id
+    this.router.navigate(['notes', noteId])
+  }
+
+  deleteNote =(id:number) =>{
+    this.deleteItem(id)
+  }
+}
+
+
+/*
 import {Component} from '@angular/core';
 import {Note} from "../../models/note";
 import {RequestService} from "../../service/notes-service.service";
@@ -62,3 +112,4 @@ export class NotesComponent {
     this.reqService.add(note).subscribe()
   }
 }
+*/
