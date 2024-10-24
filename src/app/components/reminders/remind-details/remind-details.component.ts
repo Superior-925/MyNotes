@@ -44,7 +44,7 @@ export class RemindDetailsComponent {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
-      this.reqService.getRemind(params['id']).subscribe((res:Remind) =>{
+      this.reqService.get(params['id']).subscribe((res:Remind) =>{
         this.remind =res;
         this.isPopupVisible = true
       })
@@ -77,7 +77,7 @@ export class RemindDetailsComponent {
       tags: selectedTags
     };
 
-    this.reqService.updateRemind(updatedRemind).subscribe(() => {
+    this.reqService.update(updatedRemind).subscribe(() => {
       this.router.navigate(['reminders']);
       this.closePopup();
     });

@@ -81,7 +81,7 @@ export class RemindAddComponent {
       remindMe: this.f.remindMe.value,
     };
 
-    this.reqService.addRemind(remind as Remind)
+    this.reqService.add(remind as Remind)
       .pipe(
         catchError(error => {
           console.error('Ошибка при добавлении напоминания:', error);

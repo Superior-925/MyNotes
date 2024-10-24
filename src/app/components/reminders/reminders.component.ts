@@ -42,7 +42,7 @@ export class RemindersComponent {
   getReminds() {
     this.loading = true
     this.reqService
-      .getReminds().subscribe(
+      .getAll().subscribe(
       (res:Remind[]) => {
         this.reminds = res
         this.loading = false
@@ -65,7 +65,7 @@ export class RemindersComponent {
 
   deleteRemind = (remind:Remind) => {
     this.reminds = this.reminds.filter(u =>u.id !== remind.id)
-    this.reqService.deleteRemind(remind).subscribe()
+    this.reqService.delete(remind.id).subscribe()
   }
    getTags = () => {
     this.tagService.getTags().subscribe((tags) => {
