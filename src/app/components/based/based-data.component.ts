@@ -12,9 +12,6 @@ export interface IDataService<T> {
 
 @Directive()
 export abstract class BaseDataComponent<T> implements OnInit {
-  items: T[] = [];
-  loading: boolean = false;
-
   constructor(
     protected dataService: IDataService<T>,
     protected router: Router,
@@ -22,6 +19,8 @@ export abstract class BaseDataComponent<T> implements OnInit {
   ) {
   }
 
+  public items: T[] = [];
+  public loading: boolean = false;
 
   ngOnInit(): void {
     this.loadData();
