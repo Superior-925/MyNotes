@@ -1,21 +1,20 @@
-import {Component} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   DxButtonModule,
-  DxDateBoxModule, DxFormModule,
+  DxDateBoxModule,
+  DxFormModule,
   DxPopupModule,
   DxTagBoxModule,
   DxTextAreaModule,
-  DxTextBoxModule
-} from "devextreme-angular";
-import {CommonModule} from "@angular/common";
-import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {RequestRemindService} from "../../../service/reminds-service.service";
-import {Router} from "@angular/router";
-import {Remind} from "../../../models/remind";
-import {catchError, throwError} from "rxjs";
-import {TagsServiceService} from "../../../service/tags-service.service";
-import {Tag} from "../../../models";
-import {log} from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
+  DxTextBoxModule,
+} from 'devextreme-angular';
+
+import { RequestRemindService } from '../../../service/reminds-service.service';
+import { Remind, Tag } from '../../../models';
+import { TagsServiceService } from '../../../service/tags-service.service';
 
 @Component({
   selector: 'app-remind-add',
@@ -33,95 +32,69 @@ import {log} from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
     DxFormModule,
   ],
   templateUrl: './remind-add.component.html',
-  styleUrl: './remind-add.component.css'
+  styleUrl: './remind-add.component.scss',
 })
-export class RemindAddComponent {
-  remindForm: FormGroup
-  isPopupVisible = true;
-  tags:Tag[] = []
-  showNotification: boolean = false;
-  currentRemind: Remind | null = null
+export class RemindAddComponent implements OnInit {
+  public remindForm: FormGroup;
+  public isPopupVisible = true;
+  public tags: Tag[] = [];
+  public showNotification: boolean = false;
+  public currentRemind: Remind | null = null;
 
   constructor(
     private formBuilder: FormBuilder,
     private reqService: RequestRemindService,
     private router: Router,
-    private tagService: TagsServiceService
+    private tagService: TagsServiceService,
   ) {
     this.remindForm = this.formBuilder.group({
       title: ['', Validators.required],
       tags: [''],
       deadline: [null, Validators.required],
-      remindMe: [null, Validators.required]
-    })
+      remindMe: [null, Validators.required],
+    });
   }
 
-
-  get f(): any {
-    return this.remindForm.controls;
-  }
-
-  ngOnInit(): void {
-    this.reqService.remind$.subscribe(remind => {
+  public ngOnInit(): void {
+    this.reqService.remind$.subscribe((remind) => {
       this.currentRemind = remind;
       this.showNotification = remind !== null;
     });
 
-    this.tagService.getAll().subscribe((tags:Tag[]) => {
-      this.tags = tags
-    })
-    }
+    this.tagService.getAll().subscribe((tags: Tag[]) => {
+      this.tags = tags;
+    });
+  }
 
-
-
-  save(): void {
+  public save(): void {
     if (this.remindForm.invalid) {
-      return
+      return;
     }
 
-    const tagIds = this.f.tags.value;
-    const tagObjects = tagIds.map((id:number) =>
-      this.tags
-        .find(tag => tag.id === id));
+    const tagIds = this.formControls.tags.value;
+    const tagObjects = tagIds.map((id: number) => this.tags.find((tag) => tag.id === id));
 
     const remind: Remind = {
       id: 0,
-      title: this.f.title.value,
+      title: this.formControls.title.value,
       tags: tagObjects,
-      deadline: this.f.deadline.value,
-      remindMe: this.f.remindMe.value,
+      deadline: this.formControls.deadline.value,
+      remindMe: this.formControls.remindMe.value,
     };
 
-    this.reqService.add(remind as Remind).subscribe(savedRemind => {
+    this.reqService.add(remind).subscribe((savedRemind) => {
       this.reqService.setReminder(savedRemind);
-      console.log(this.currentRemind)
+      console.log(this.currentRemind);
       this.router.navigate(['reminders']);
-    })
-
+    });
   }
 
-  cancelReminder(): void {
-    this.reqService.clearReminder();
-  }
-
-  closePopup(): void {
+  public closePopup(): void {
     this.isPopupVisible = false;
-    this.router.navigate(['reminders'])
+    this.router.navigate(['reminders']);
   }
 
+  private get formControls(): any {
+    return this.remindForm.controls;
+  }
 }
-/*  setupRemindNotification(remind: Remind): void {
-    const remindDate = new Date(remind.remindMe).getTime();
-    const now = new Date().getTime();
-    const timeUntilRemind = remindDate - now;
-
-    if (timeUntilRemind > 0) {
-      setTimeout(() => {
-        // Тут код для показа уведомления. Например, вы можете использовать dx-popup для отображения уведомления.
-        // Вы можете определить дополнительное свойство в компоненте для контроля видимости уведомления.
-        this.showNotification = true; // Убедитесь, что у вас есть свойство showNotification в компоненте.
-        // Также установите текущее напоминание для отображения информации в уведомлении.
-        this.currentRemind = remind;
-      }, timeUntilRemind);
-    }
-  }*/

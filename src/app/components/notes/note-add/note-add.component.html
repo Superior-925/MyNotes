@@ -1,15 +1,14 @@
-<dx-popup id="noteAddPopup"
-          [visible]="isPopupVisible"
-          (closeOnOutsideClickChange)="closePopup"
-          [showTitle]="true"
-          title="Add Note"
-          [width]="500"
-          [height]="600">
-  <div class="note-edit-form" >
-    <form
-      [formGroup]="noteForm"
-      (ngSubmit)="save()"
-      *ngIf="noteForm" >
+<dx-popup
+  id="noteAddPopup"
+  [visible]="isPopupVisible"
+  (closeOnOutsideClickChange)="(closePopup)"
+  [showTitle]="true"
+  title="Add Note"
+  [width]="500"
+  [height]="600"
+>
+  <div class="note-edit-form">
+    <form [formGroup]="noteForm" (ngSubmit)="save()" *ngIf="noteForm">
       <dx-text-box formControlName="title" placeholder="Title"></dx-text-box>
       <dx-text-area formControlName="content" placeholder="Content"></dx-text-area>
       <dx-button text="Save" type="success" [useSubmitBehavior]="true"></dx-button>

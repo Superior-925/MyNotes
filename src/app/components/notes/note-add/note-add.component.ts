@@ -1,17 +1,19 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {RequestService} from "../../../service/notes-service.service";
-import {Router} from "@angular/router";
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import {
   DxButtonModule,
-  DxDateBoxModule, DxFormModule,
+  DxDateBoxModule,
+  DxFormModule,
   DxPopupModule,
   DxTagBoxModule,
   DxTextAreaModule,
-  DxTextBoxModule
-} from "devextreme-angular";
-import {Note} from "../../../models/note";
-import {CommonModule} from "@angular/common";
+  DxTextBoxModule,
+} from 'devextreme-angular';
+
+import { RequestService } from '../../../service/notes-service.service';
+import { Note } from '../../../models';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-note-add',
@@ -29,51 +31,44 @@ import {CommonModule} from "@angular/common";
     DxFormModule,
   ],
   templateUrl: './note-add.component.html',
-  styleUrl: './note-add.component.css'
+  styleUrl: './note-add.component.scss',
 })
-export class NoteAddComponent implements OnInit {
-  noteForm: FormGroup
-  isPopupVisible = true;
-
+export class NoteAddComponent {
   constructor(
     private formBuilder: FormBuilder,
     private reqService: RequestService,
-    private router: Router
+    private router: Router,
   ) {
-
     this.noteForm = this.formBuilder.group({
       title: ['', Validators.required],
       content: ['', Validators.required],
-    })
+    });
   }
 
-  get f(): any {
-    return this.noteForm.controls;
-  }
+  public noteForm: FormGroup;
+  public isPopupVisible = true;
 
-  ngOnInit(): void {
-  }
-
-  save(): void {
+  public save(): void {
     if (this.noteForm.invalid) {
-      return
+      return;
     }
 
     const note: Note = {
       id: 0,
-      title: this.f.title.value,
-      content: this.f.content.value,
+      title: this.formControls.title.value,
+      content: this.formControls.content.value,
     };
 
-
-    this.reqService
-      .add(note as Note)
-      .subscribe(() => this.router.navigate(['notes']))
-    this.isPopupVisible = false
-
-  }
-  closePopup(): void {
+    this.reqService.add(note as Note).subscribe(() => this.router.navigate(['notes']));
     this.isPopupVisible = false;
-    this.router.navigate(['notes'])
+  }
+
+  public closePopup(): void {
+    this.isPopupVisible = false;
+    this.router.navigate(['notes']);
+  }
+
+  private get formControls(): any {
+    return this.noteForm.controls;
   }
 }

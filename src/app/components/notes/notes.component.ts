@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { Note } from '../../models/note';
-import { RequestService } from '../../service/notes-service.service';
+import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import {BaseDataComponent} from "../based/based-data.component";
-import {CommonModule} from "@angular/common";
-import {NotesDetailsComponent} from "./notes-details/notes-details.component";
-import {CardComponent, LoadingComponent, SectionWrapperComponent} from "../../shared";
-import {DevExtremeModule} from "devextreme-angular";
-import {NoteAddComponent} from "./note-add/note-add.component";
-import {LoadingService} from "../../service/loader.service";
 
+import { Note } from '../../models';
+import { RequestService } from '../../service/notes-service.service';
+import { BaseDataComponent } from '../based/based-data.component';
+import { NotesDetailsComponent } from './notes-details/notes-details.component';
+import { CardComponent, LoadingComponent, SectionWrapperComponent } from '../../shared';
+import { DevExtremeModule } from 'devextreme-angular';
+import { NoteAddComponent } from './note-add/note-add.component';
+import { LoadingService } from '../../service/loader.service';
 
 @Component({
   selector: 'app-notes',
@@ -21,32 +21,30 @@ import {LoadingService} from "../../service/loader.service";
     NoteAddComponent,
     DevExtremeModule,
     SectionWrapperComponent,
-    LoadingComponent
+    LoadingComponent,
   ],
   templateUrl: './notes.component.html',
-  styleUrl: './notes.component.css'
+  styleUrl: './notes.component.scss',
 })
 export class NotesComponent extends BaseDataComponent<Note> {
   constructor(
     protected notesService: RequestService,
     protected override router: Router,
-    protected override loadingService: LoadingService) {
-    super(notesService, router,loadingService);
-
+    protected override loadingService: LoadingService,
+  ) {
+    super(notesService, router, loadingService);
   }
 
-  addNote = () =>{
-    this.addItem('add')
-  }
+  public addNote = () => {
+    this.addItem('add');
+  };
 
-  noteDetails =(note: Note):void =>  {
-    const noteId = note.id
-    this.router.navigate(['notes', noteId])
-  }
+  public noteDetails = (note: Note): void => {
+    const noteId = note.id;
+    this.router.navigate(['notes', noteId]);
+  };
 
-  deleteNote =(id:number) =>{
-    this.deleteItem(id)
-  }
+  public deleteNote = (id: number) => {
+    this.deleteItem(id);
+  };
 }
-
-
