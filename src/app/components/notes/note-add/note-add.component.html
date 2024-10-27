@@ -1,7 +1,7 @@
 <dx-popup
   id="noteAddPopup"
   [visible]="isPopupVisible"
-  (closeOnOutsideClickChange)="(closePopup)"
+  (onHidden)="closePopup()"
   [showTitle]="true"
   title="Add Note"
   [width]="500"

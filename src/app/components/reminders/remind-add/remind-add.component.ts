@@ -84,7 +84,6 @@ export class RemindAddComponent implements OnInit {
 
     this.reqService.add(remind).subscribe((savedRemind) => {
       this.reqService.setReminder(savedRemind);
-      console.log(this.currentRemind);
       this.router.navigate(['reminders']);
     });
   }
