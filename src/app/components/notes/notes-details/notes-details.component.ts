@@ -5,11 +5,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { Note } from '../../../models';
 import { RequestService } from '../../../service/notes-service.service';
+import { LoadingComponent } from '../../../shared';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-notes-details',
   standalone: true,
-  imports: [DxPopupModule, DxTextBoxModule, DxTextAreaModule, DxTagBoxModule, DxDateBoxModule, DxButtonModule],
+  imports: [DxPopupModule, DxTextBoxModule, DxTextAreaModule, DxTagBoxModule, DxDateBoxModule, DxButtonModule, LoadingComponent, NgIf],
   templateUrl: './notes-details.component.html',
   styleUrl: './notes-details.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,7 +1,15 @@
-<dx-popup id="noteEditPopup" [visible]="isPopupVisible" [showTitle]="true" [width]="500" [height]="600">
-  <div class="note-edit-form">
-    <dx-text-box [(value)]="note.title" placeholder="Title"></dx-text-box>
-    <dx-text-area [(value)]="note.content" placeholder="Content"></dx-text-area>
-    <dx-button text="Save" (onClick)="save()"></dx-button>
-  </div>
-</dx-popup>
+<ng-container *ngIf="isPopupVisible; then editNote; else loading"></ng-container>
+
+<ng-template #editNote>
+  <dx-popup id="noteEditPopup" [visible]="isPopupVisible" [showTitle]="true" [width]="500" [height]="600">
+    <div class="note-edit-form">
+      <dx-text-box [(value)]="note.title" placeholder="Title"></dx-text-box>
+      <dx-text-area [(value)]="note.content" placeholder="Content"></dx-text-area>
+      <dx-button text="Save" (onClick)="save()"></dx-button>
+    </div>
+  </dx-popup>
+</ng-template>
+
+<ng-template #loading>
+  <app-loading [visible]="true"></app-loading>
+</ng-template>
