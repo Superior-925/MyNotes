@@ -1,24 +1,11 @@
-<dx-popup id="noteEditPopup"
-          [visible]="isPopupVisible"
-          [showTitle]="true"
-          [width]="500"
-          [height]="600">
+<dx-popup id="noteEditPopup" [visible]="isPopupVisible" [showTitle]="true" [width]="500" [height]="600">
   <div class="note-edit-form">
     <dx-text-box [(value)]="remind.title" placeholder="Title"></dx-text-box>
-    <dx-tag-box
-      [(value)]="remind.tags"
-      [dataSource]="tags"
-      displayExpr="tagTitle"
-      placeholder="Tags">
-    </dx-tag-box>
+    <dx-tag-box [(value)]="remind.tags" [dataSource]="tags" displayExpr="tagTitle" placeholder="Tags"></dx-tag-box>
 
-    <dx-date-box [(value)]="remind.deadline"
-                 placeholder="Deadline"
-                 type="datetime"
+    <dx-date-box [(value)]="remind.deadline" placeholder="Deadline" type="datetime"
                  displayFormat="dd.MM.yyyy HH:mm"></dx-date-box>
-    <dx-date-box [(value)]="remind.remindMe"
-                 placeholder="Remind me for"
-                 type="datetime"
+    <dx-date-box [(value)]="remind.remindMe" placeholder="Remind me for" type="datetime"
                  displayFormat="dd.MM.yyyy HH:mm"></dx-date-box>
     <dx-button text="Save" (onClick)="save()"></dx-button>
   </div>
