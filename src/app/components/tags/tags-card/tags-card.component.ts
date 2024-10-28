@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+
 import { Tag } from '../../../models';
 import { CardItemComponent } from '../../../shared';
 
@@ -7,17 +8,18 @@ import { CardItemComponent } from '../../../shared';
   standalone: true,
   imports: [CardItemComponent],
   templateUrl: './tags-card.component.html',
-  styleUrl: './tags-card.component.css',
+  styleUrl: './tags-card.component.scss',
 })
 export class TagsCardComponent {
   @Input() tag!: Tag; // Добавляем список всех тегов
   @Input() deleteParentFunc!: (tag: Tag) => void;
   @Input() editParentFunc!: (tag: Tag) => void;
 
-  onDelete = (): void => {
+  public onDelete = (): void => {
     this.deleteParentFunc(this.tag);
   };
-  onEdit = (): void => {
+
+  public onEdit = (): void => {
     this.editParentFunc(this.tag);
   };
 }
