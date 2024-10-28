@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Tag } from "../models";
-import { DataService } from "./data-service.service";
-import { HttpClient } from "@angular/common/http";
-import {  Observable,  ReplaySubject, switchMap, tap } from "rxjs";
+import { HttpClient } from '@angular/common/http';
+import { ReplaySubject, tap } from 'rxjs';
+
+import { Tag } from '../models';
+import { DataService } from './data-service.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TagsServiceService extends DataService<Tag> {
   private tagsCache$: ReplaySubject<Tag[]> = new ReplaySubject(1);
@@ -15,10 +16,9 @@ export class TagsServiceService extends DataService<Tag> {
     this.loadTags(); // Загрузка тегов при инициализации
   }
 
-   loadTags(): void {
+  private loadTags(): void {
     this.getAll()
-      .pipe(tap(tags => this.tagsCache$.next(tags)))
+      .pipe(tap((tags) => this.tagsCache$.next(tags)))
       .subscribe();
   }
-
 }

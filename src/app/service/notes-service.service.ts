@@ -1,13 +1,14 @@
-import {Injectable} from '@angular/core';
-import {Note} from "../models";
-import {HttpClient, } from "@angular/common/http";
-import {DataService} from "./data-service.service";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+import { Note } from '../models';
+import { DataService } from './data-service.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class RequestService extends  DataService<Note>{
+export class RequestService extends DataService<Note> {
   constructor(http: HttpClient) {
-    super(  http,'api/notes')
+    super(http, 'api/notes');
   }
 }
