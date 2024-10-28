@@ -1,15 +1,17 @@
 .notes-container {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
+
 /* Button */
 .add-note-button-container {
   padding: 5px;
   display: flex;
   justify-content: right;
   align-items: center;
-  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.12),
+  0 2px 2px 0 rgba(0, 0, 0, 0.08);
 }
 
 .add-note-button {

@@ -1,14 +1,12 @@
-import {Component, Input} from '@angular/core';
-import {DxLoadPanelModule} from "devextreme-angular";
+import { Component, Input } from '@angular/core';
+import { DxLoadPanelModule } from 'devextreme-angular';
 
 @Component({
   selector: 'app-loading',
   standalone: true,
-  imports: [
-    DxLoadPanelModule
-  ],
+  imports: [DxLoadPanelModule],
   templateUrl: './loading.component.html',
-  styleUrl: './loading.component.css'
+  styleUrl: './loading.component.scss',
 })
 export class LoadingComponent {
   @Input() visible: boolean = false;

@@ -1,17 +1,9 @@
 <div>
   <div class="add-note-button-container">
-    <dx-button
-      id="add-button"
-      icon="add"
-      text={{ButtonName}}
-      class="add-note-button"
-      (onClick)="onAdd()">
-    </dx-button>
+    <dx-button id="add-button" icon="add" text="{{ ButtonName }}" class="add-note-button"
+               (onClick)="onAdd()"></dx-button>
   </div>
   <div class="notes-container">
     <ng-content></ng-content>
   </div>
 </div>
-
-<!--
-text="Add new note"-->

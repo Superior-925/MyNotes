@@ -1,20 +1,18 @@
-import {Component, Input} from '@angular/core';
-import {DxButtonModule} from "devextreme-angular";
+import { Component, Input } from '@angular/core';
+import { DxButtonModule } from 'devextreme-angular';
 
 @Component({
   selector: 'app-section-wrapper',
   standalone: true,
-  imports: [
-    DxButtonModule
-  ],
+  imports: [DxButtonModule],
   templateUrl: './section-wrapper.component.html',
-  styleUrl: './section-wrapper.component.css'
+  styleUrl: './section-wrapper.component.scss',
 })
 export class SectionWrapperComponent {
   @Input() addFunc!: () => void;
-  @Input() ButtonName: string = ''
+  @Input() ButtonName: string = '';
 
-  onAdd(): void {
-    this.addFunc()
+  public onAdd(): void {
+    this.addFunc();
   }
 }

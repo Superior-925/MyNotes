@@ -7,7 +7,7 @@ import { DisplayableItem } from '../../models/DisplayableItem';
   standalone: true,
   imports: [DxButtonModule],
   templateUrl: './card-item.component.html',
-  styleUrl: './card-item.component.css',
+  styleUrl: './card-item.component.scss',
 })
 export class CardItemComponent {
   @Input() item!: DisplayableItem;

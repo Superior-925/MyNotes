@@ -3,19 +3,8 @@
     <h2>{{ note.title }}</h2>
     <p>{{ note.content }}</p>
     <div class="card-buttons">
-      <dx-button
-        id="deleteButton"
-        icon="trash"
-        type="danger"
-        (onClick)="onDelete()">
-      </dx-button>
-      <dx-button
-        id="editButton"
-        icon="edit"
-        type="success"
-        (onClick)="onEdit()">
-      </dx-button>
+      <dx-button id="deleteButton" icon="trash" type="danger" (onClick)="onDelete()"></dx-button>
+      <dx-button id="editButton" icon="edit" type="success" (onClick)="onEdit()"></dx-button>
     </div>
   </div>
 </div>
-

@@ -1,29 +1,26 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Note} from "../../models/note";
-import {CommonModule} from "@angular/common";
-import {DxButtonModule} from "devextreme-angular";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { Note } from '../../models';
+import { DxButtonModule } from 'devextreme-angular';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-    imports: [CommonModule, DxButtonModule],
+  imports: [CommonModule, DxButtonModule],
   templateUrl: './card.component.html',
-  styleUrl: './card.component.css'
+  styleUrl: './card.component.scss',
 })
 export class CardComponent {
-@Input() note!: Note;
-@Output() deleteNote = new EventEmitter<Note>();
-@Output() editNote = new EventEmitter<Note>();
+  @Input() note!: Note;
+  @Output() deleteNote = new EventEmitter<Note>();
+  @Output() editNote = new EventEmitter<Note>();
 
+  public onDelete(): void {
+    this.deleteNote.emit(this.note);
+  }
 
-ngOnInit():void {
-  console.log(this.note)
-}
-onDelete() : void {
-  this.deleteNote.emit(this.note)
-}
-
-onEdit() : void {
-  this.editNote.emit()
-}
+  public onEdit(): void {
+    this.editNote.emit();
+  }
 }
