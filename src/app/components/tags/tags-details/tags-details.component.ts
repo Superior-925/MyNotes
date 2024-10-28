@@ -1,101 +1,64 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {
-  DxButtonModule,
-  DxDateBoxModule,
-  DxPopupModule,
-  DxTagBoxModule,
-  DxTextAreaModule,
-  DxTextBoxModule
-} from "devextreme-angular";
-import {Tag} from "../../../models";
-import {ActivatedRoute, Router} from "@angular/router";
-import {TagsServiceService} from "../../../service/tags-service.service";
-import {RequestRemindService} from "../../../service/reminds-service.service";
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { DxButtonModule, DxDateBoxModule, DxPopupModule, DxTagBoxModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { Tag } from '../../../models';
+import { TagsServiceService } from '../../../service/tags-service.service';
+import { RequestRemindService } from '../../../service/reminds-service.service';
+import { LoadingComponent } from '../../../shared';
 
 @Component({
   selector: 'app-tags-details',
   standalone: true,
   imports: [
+    CommonModule,
     DxPopupModule,
     DxTextBoxModule,
     DxTextAreaModule,
     DxTagBoxModule,
     DxDateBoxModule,
-    DxButtonModule
+    DxButtonModule,
+    LoadingComponent,
   ],
   templateUrl: './tags-details.component.html',
-  styleUrl: './tags-details.component.css'
+  styleUrl: './tags-details.component.scss',
 })
-export class TagsDetailsComponent {
+export class TagsDetailsComponent implements OnInit {
   @Output() close = new EventEmitter<void>();
   @Input() tag!: Tag;
 
-  isPopupVisible = false;
+  public isPopupVisible = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private tagsService : TagsServiceService,
-    private remindService: RequestRemindService
-  ) {
-  }
+    private tagsService: TagsServiceService,
+    private remindService: RequestRemindService,
+    private cdr: ChangeDetectorRef,
+  ) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
-      this.tagsService.get(params['id']).subscribe((res:Tag) =>{
-        this.tag =res;
-        this.isPopupVisible = true
-      })
-    })}
-
-  closePopup(): void {
-    this.isPopupVisible = false;
-    this.close.emit();
-    this.router.navigate(['reminders'])
-  }
-
-  save(): void {
-
-    this.tagsService
-      .update(this.tag)
-      .subscribe(() => {
-        this.remindService.updateTagInReminds(this.tag)
-        this.router.navigate(['tags']);
-      this.closePopup();
+      this.tagsService.get(params['id']).subscribe((res: Tag) => {
+        this.tag = res;
+        this.isPopupVisible = true;
+        this.cdr.markForCheck();
+      });
     });
   }
 
-}
-/* @Output() close = new EventEmitter<void>();
-  @Input() tag!: Tag;
-
-  isPopupVisible = false;
-
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private tagsService : TagsServiceService
-  ) {
-  }
-
-  ngOnInit() {
-    this.activatedRoute.params.subscribe((params) => {
-      this.tagsService.get(params['id']).subscribe((res:Tag) =>{
-        this.tag =res;
-        this.isPopupVisible = true
-      })
-    })}
-
-  closePopup(): void {
+  public closePopup(): void {
     this.isPopupVisible = false;
     this.close.emit();
-    this.router.navigate(['reminders'])
+    this.router.navigate(['reminders']);
   }
 
-  save(): void {
-
+  public save(): void {
     this.tagsService.update(this.tag).subscribe(() => {
+      this.remindService.updateTagInReminds(this.tag);
       this.router.navigate(['tags']);
       this.closePopup();
     });
-  }*/
+  }
+}
