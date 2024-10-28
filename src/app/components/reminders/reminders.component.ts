@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
 import { DevExtremeModule } from 'devextreme-angular';
 
@@ -28,9 +29,11 @@ import { LoadingService } from '../../service/loader.service';
   templateUrl: './reminders.component.html',
   styleUrl: './reminders.component.scss',
 })
-export class RemindersComponent extends BaseDataComponent<Remind> implements OnInit {
+export class RemindersComponent extends BaseDataComponent<Remind> implements OnInit, OnDestroy {
   public tags: Tag[] = [];
   public currentRemind: Remind | null = null; // Для отображения в Popup
+
+  private unsubscribe$: Subject<void> = new Subject<void>();
 
   constructor(
     protected override dataService: RequestRemindService,
@@ -48,6 +51,11 @@ export class RemindersComponent extends BaseDataComponent<Remind> implements OnI
   public override ngOnInit(): void {
     super.ngOnInit();
     this.setupReminders();
+  }
+
+  public ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
   public addRemind = (): void => {
@@ -68,7 +76,7 @@ export class RemindersComponent extends BaseDataComponent<Remind> implements OnI
       this.remindServ.setReminder(remind);
     });
 
-    this.remindServ.remind$.subscribe((remind) => {
+    this.remindServ.remind$.pipe(takeUntil(this.unsubscribe$)).subscribe((remind) => {
       if (remind) {
         this.currentRemind = remind;
       }

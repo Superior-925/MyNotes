@@ -1,5 +1,6 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Subject, switchMap, takeUntil } from 'rxjs';
 import { DxButtonModule, DxDateBoxModule, DxPopupModule, DxTagBoxModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -24,11 +25,13 @@ import { LoadingComponent } from '../../../shared';
   templateUrl: './tags-details.component.html',
   styleUrl: './tags-details.component.scss',
 })
-export class TagsDetailsComponent implements OnInit {
+export class TagsDetailsComponent implements OnInit, OnDestroy {
   @Output() close = new EventEmitter<void>();
   @Input() tag!: Tag;
 
-  public isPopupVisible = false;
+  public isPopupVisible: boolean = false;
+
+  private unsubscribe$: Subject<void> = new Subject<void>();
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -38,14 +41,22 @@ export class TagsDetailsComponent implements OnInit {
     private cdr: ChangeDetectorRef,
   ) {}
 
-  public ngOnInit() {
-    this.activatedRoute.params.subscribe((params) => {
-      this.tagsService.get(params['id']).subscribe((res: Tag) => {
+  public ngOnInit(): void {
+    this.activatedRoute.params
+      .pipe(
+        takeUntil(this.unsubscribe$),
+        switchMap((params) => this.tagsService.get(params['id'])),
+      )
+      .subscribe((res: Tag) => {
         this.tag = res;
         this.isPopupVisible = true;
         this.cdr.markForCheck();
       });
-    });
+  }
+
+  public ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
   public closePopup(): void {

@@ -14,7 +14,8 @@ import { DxPopupModule } from 'devextreme-angular';
 })
 export class PopupComponent implements OnInit, OnDestroy {
   public remind: Remind | null = null;
-  private unsubscribe$ = new Subject<void>();
+
+  private unsubscribe$: Subject<void> = new Subject<void>();
 
   constructor(private remService: RequestRemindService) {}
 
