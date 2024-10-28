@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 import { CardItemComponent } from '../../../shared';
@@ -10,6 +10,7 @@ import { Note } from '../../../models';
   imports: [CardItemComponent, DatePipe],
   templateUrl: './note-card.component.html',
   styleUrl: './note-card.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NoteCardComponent {
   @Input() note!: Note;

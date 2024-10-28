@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
@@ -28,6 +28,7 @@ import { LoadingService } from '../../service/loader.service';
   ],
   templateUrl: './reminders.component.html',
   styleUrl: './reminders.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RemindersComponent extends BaseDataComponent<Remind> implements OnInit, OnDestroy {
   public tags: Tag[] = [];

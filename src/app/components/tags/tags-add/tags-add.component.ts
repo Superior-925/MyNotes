@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -33,6 +33,7 @@ import { Tag } from '../../../models';
   ],
   templateUrl: './tags-add.component.html',
   styleUrl: './tags-add.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TagsAddComponent {
   remindForm: FormGroup;

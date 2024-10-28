@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { DxDrawerModule, DxListModule, DxToolbarModule } from 'devextreme-angular';
 import { Router, RouterModule } from '@angular/router';
 
@@ -10,6 +10,7 @@ import { List, SidebarServiceService as Service } from '../../service/sidebar-se
   imports: [DxDrawerModule, DxListModule, RouterModule, DxToolbarModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarComponent {
   public isDrawerOpen = true;

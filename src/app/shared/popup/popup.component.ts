@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 
 import { Remind } from '../../models';
@@ -11,6 +11,7 @@ import { DxPopupModule } from 'devextreme-angular';
   imports: [DxPopupModule],
   templateUrl: './popup.component.html',
   styleUrl: './popup.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PopupComponent implements OnInit, OnDestroy {
   public remind: Remind | null = null;

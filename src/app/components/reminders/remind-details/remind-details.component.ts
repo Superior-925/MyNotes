@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { switchMap } from 'rxjs';
 import { DxButtonModule, DxDateBoxModule, DxPopupModule, DxTagBoxModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
@@ -15,6 +15,7 @@ import { LoadingComponent } from '../../../shared';
   imports: [DxPopupModule, DxTextBoxModule, DxTextAreaModule, DxTagBoxModule, DxDateBoxModule, DxButtonModule, LoadingComponent, NgIf],
   templateUrl: './remind-details.component.html',
   styleUrl: './remind-details.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RemindDetailsComponent implements OnInit {
   @Output() close = new EventEmitter<void>();

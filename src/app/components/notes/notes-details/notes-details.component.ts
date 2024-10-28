@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DxButtonModule, DxDateBoxModule, DxPopupModule, DxTagBoxModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -11,6 +11,7 @@ import { RequestService } from '../../../service/notes-service.service';
   imports: [DxPopupModule, DxTextBoxModule, DxTextAreaModule, DxTagBoxModule, DxDateBoxModule, DxButtonModule],
   templateUrl: './notes-details.component.html',
   styleUrl: './notes-details.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotesDetailsComponent implements OnInit {
   @Output() close = new EventEmitter<void>();

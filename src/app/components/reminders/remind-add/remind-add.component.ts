@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -33,6 +33,7 @@ import { TagsServiceService } from '../../../service/tags-service.service';
   ],
   templateUrl: './remind-add.component.html',
   styleUrl: './remind-add.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RemindAddComponent implements OnInit {
   public remindForm: FormGroup;

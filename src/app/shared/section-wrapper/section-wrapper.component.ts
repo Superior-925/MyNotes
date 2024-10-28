@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { DxButtonModule } from 'devextreme-angular';
 
 @Component({
@@ -7,6 +7,7 @@ import { DxButtonModule } from 'devextreme-angular';
   imports: [DxButtonModule],
   templateUrl: './section-wrapper.component.html',
   styleUrl: './section-wrapper.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SectionWrapperComponent {
   @Input() addFunc!: () => void;

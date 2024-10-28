@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { DxBoxModule } from 'devextreme-angular';
 
 @Component({
@@ -7,5 +7,6 @@ import { DxBoxModule } from 'devextreme-angular';
   imports: [DxBoxModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {}

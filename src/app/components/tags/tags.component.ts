@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -16,6 +16,7 @@ import { RequestRemindService } from '../../service/reminds-service.service';
   imports: [SectionWrapperComponent, TagsCardComponent, CommonModule, LoadingComponent],
   templateUrl: './tags.component.html',
   styleUrl: './tags.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TagsComponent extends BaseDataComponent<Tag> implements OnInit {
   constructor(

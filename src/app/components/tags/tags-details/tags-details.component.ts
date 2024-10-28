@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subject, switchMap, takeUntil } from 'rxjs';
 import { DxButtonModule, DxDateBoxModule, DxPopupModule, DxTagBoxModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
@@ -24,6 +24,7 @@ import { LoadingComponent } from '../../../shared';
   ],
   templateUrl: './tags-details.component.html',
   styleUrl: './tags-details.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TagsDetailsComponent implements OnInit, OnDestroy {
   @Output() close = new EventEmitter<void>();

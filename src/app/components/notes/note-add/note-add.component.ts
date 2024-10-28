@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {
@@ -32,6 +32,7 @@ import { CommonModule } from '@angular/common';
   ],
   templateUrl: './note-add.component.html',
   styleUrl: './note-add.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NoteAddComponent {
   constructor(

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 
 import { CardItemComponent } from '../../../shared';
@@ -11,6 +11,7 @@ import { TagsServiceService } from '../../../service/tags-service.service';
   imports: [DatePipe, CardItemComponent, CommonModule],
   templateUrl: './remind-card.component.html',
   styleUrl: './remind-card.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RemindCardComponent implements OnInit {
   @Input() remind!: Remind;

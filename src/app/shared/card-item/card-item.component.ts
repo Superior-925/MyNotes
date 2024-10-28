@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { DxButtonModule } from 'devextreme-angular';
 import { DisplayableItem } from '../../models/DisplayableItem';
 
@@ -8,6 +8,7 @@ import { DisplayableItem } from '../../models/DisplayableItem';
   imports: [DxButtonModule],
   templateUrl: './card-item.component.html',
   styleUrl: './card-item.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardItemComponent {
   @Input() item!: DisplayableItem;

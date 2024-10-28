@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -25,6 +25,7 @@ import { LoadingService } from '../../service/loader.service';
   ],
   templateUrl: './notes.component.html',
   styleUrl: './notes.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotesComponent extends BaseDataComponent<Note> {
   constructor(
