@@ -1,9 +1,5 @@
 <div class="flex-container">
-  <dx-toolbar
-    [items]="toolbarContent"
-    id="toolbar"
-    class="dx-theme-background-color"
-  ></dx-toolbar>
+  <dx-toolbar [items]="toolbarContent" id="toolbar" class="dx-theme-background-color"></dx-toolbar>
   <dx-drawer
     openedStateMode="shrink"
     position="left"
@@ -12,8 +8,7 @@
     [(opened)]="isDrawerOpen"
     [closeOnOutsideClick]="false"
   >
-    <div *dxTemplate="let data of 'template'"
-         class="listItems">
+    <div *dxTemplate="let data of 'template'" class="listItems">
       <dx-list
         class="panel-list dx-theme-typography-background-color"
         [items]="navigation"
@@ -30,8 +25,5 @@
         <router-outlet></router-outlet>
       </div>
     </div>
-
   </dx-drawer>
 </div>
-
-

@@ -12,7 +12,8 @@
 }
 
 ::ng-deep #toolbar {
-  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.12),
+  0 2px 2px 0 rgba(0, 0, 0, 0.08);
   padding: 5px 10px;
   z-index: 1;
 }
@@ -52,15 +53,15 @@
 }
 
 ::ng-deep #content h2 {
-  font-size: 26px;}
+  font-size: 26px;
+}
+
 .flex-container {
   width: 100%;
   height: 100%;
-  padding:15px !important;
+  padding: 15px !important;
 }
 
-.listItems{
+.listItems {
   width: 300px;
 }
-
-
