@@ -9,6 +9,9 @@ import { TagsServiceService } from '../../../service/tags-service.service';
 import { RequestRemindService } from '../../../service/reminds-service.service';
 import { LoadingComponent } from '../../../shared';
 
+/**
+ * Компонент редактрования тега.
+ */
 @Component({
   selector: 'app-tags-details',
   standalone: true,

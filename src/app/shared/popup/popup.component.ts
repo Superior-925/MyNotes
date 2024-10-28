@@ -1,10 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 
-import { Remind } from '../../models';
-import { RequestRemindService } from '../../service/reminds-service.service';
-import { DxPopupModule } from 'devextreme-angular';
+import {Remind} from '../../models';
+import {RequestRemindService} from '../../service/reminds-service.service';
+import {DxPopupModule} from 'devextreme-angular';
 
+/**
+ * Компонент отображения напоминания.
+ */
 @Component({
   selector: 'app-popup',
   standalone: true,
@@ -13,21 +15,15 @@ import { DxPopupModule } from 'devextreme-angular';
   styleUrl: './popup.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PopupComponent implements OnInit, OnDestroy {
+export class PopupComponent implements OnInit {
   public remind: Remind | null = null;
 
-  private unsubscribe$: Subject<void> = new Subject<void>();
-
-  constructor(private remService: RequestRemindService) {}
-
-  public ngOnInit(): void {
-    this.remService.remind$.pipe(takeUntil(this.unsubscribe$)).subscribe((remind) => {
-      this.remind = remind;
-    });
+  constructor(private remService: RequestRemindService) {
   }
 
-  public ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
+  public ngOnInit(): void {
+    this.remService.remind$.subscribe((remind) => {
+      this.remind = remind;
+    });
   }
 }

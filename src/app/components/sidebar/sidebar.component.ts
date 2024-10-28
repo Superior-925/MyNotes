@@ -1,16 +1,19 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { DxDrawerModule, DxListModule, DxToolbarModule } from 'devextreme-angular';
-import { Router, RouterModule } from '@angular/router';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {DxDrawerModule, DxListModule, DxToolbarModule} from 'devextreme-angular';
+import {Router, RouterModule} from '@angular/router';
 
-import { List, SidebarServiceService as Service } from '../../service/sidebar-service.service';
+import {List, SidebarServiceService as Service} from '../../service/sidebar-service.service';
 
+/**
+ * Компонент навигации в приложении.
+ */
 @Component({
   selector: 'app-sidebar',
   standalone: true,
   imports: [DxDrawerModule, DxListModule, RouterModule, DxToolbarModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class SidebarComponent {
   public isDrawerOpen = true;

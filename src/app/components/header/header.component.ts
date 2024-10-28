@@ -1,6 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { DxBoxModule } from 'devextreme-angular';
 
+/**
+ * Компонент шапки приложения.
+ */
 @Component({
   selector: 'app-header',
   standalone: true,

@@ -10,6 +10,9 @@ import { BaseDataComponent } from '../based/based-data.component';
 import { LoadingService } from '../../service/loader.service';
 import { RequestRemindService } from '../../service/reminds-service.service';
 
+/**
+ * Компонент отображения списка тегов.
+ */
 @Component({
   selector: 'app-tags',
   standalone: true,

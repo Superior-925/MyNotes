@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { DxBoxModule } from 'devextreme-angular';
 
+/**
+ * Компонент-футер приложения.
+ */
 @Component({
   selector: 'app-footer',
   standalone: true,

@@ -16,6 +16,9 @@ import {
 import { TagsServiceService } from '../../../service/tags-service.service';
 import { Tag } from '../../../models';
 
+/**
+ * Компонент добавления тегов.
+ */
 @Component({
   selector: 'app-tags-add',
   standalone: true,

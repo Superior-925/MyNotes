@@ -5,6 +5,9 @@ import { ReplaySubject, tap } from 'rxjs';
 import { Tag } from '../models';
 import { DataService } from './data-service.service';
 
+/**
+ * Сервис для работы с тегами.
+ */
 @Injectable({
   providedIn: 'root',
 })

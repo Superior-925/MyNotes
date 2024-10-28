@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {CommonModule} from '@angular/common';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {
   DxButtonModule,
   DxDateBoxModule,
@@ -12,10 +12,14 @@ import {
   DxTextBoxModule,
 } from 'devextreme-angular';
 
-import { RequestRemindService } from '../../../service/reminds-service.service';
-import { Remind, Tag } from '../../../models';
-import { TagsServiceService } from '../../../service/tags-service.service';
+import {RequestRemindService} from '../../../service/reminds-service.service';
+import {Remind, Tag} from '../../../models';
+import {TagsServiceService} from '../../../service/tags-service.service';
+import {DatesFormat} from "../../../shared/enums/dates-format.enum";
 
+/**
+ * Компонент добавления напоминаний.
+ */
 @Component({
   selector: 'app-remind-add',
   standalone: true,
@@ -42,11 +46,14 @@ export class RemindAddComponent implements OnInit {
   public showNotification: boolean = false;
   public currentRemind: Remind | null = null;
 
+  protected readonly DatesFormat = DatesFormat;
+
   constructor(
     private formBuilder: FormBuilder,
     private reqService: RequestRemindService,
     private router: Router,
     private tagService: TagsServiceService,
+    private cdr: ChangeDetectorRef,
   ) {
     this.remindForm = this.formBuilder.group({
       title: ['', Validators.required],
@@ -60,6 +67,7 @@ export class RemindAddComponent implements OnInit {
     this.reqService.remind$.subscribe((remind) => {
       this.currentRemind = remind;
       this.showNotification = remind !== null;
+      this.cdr.markForCheck()
     });
 
     this.tagService.getAll().subscribe((tags: Tag[]) => {

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
+/**
+ * Сервис отслеживания состояния загрузки.
+ */
 @Injectable({
   providedIn: 'root',
 })

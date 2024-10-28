@@ -1,9 +1,9 @@
 <ng-container *ngIf="isPopupVisible; then editTag; else loading"></ng-container>
 
 <ng-template #editTag>
-  <dx-popup id="noteEditPopup" [visible]="isPopupVisible" (onHidden)="closePopup()" [showTitle]="true" [width]="500"
+  <dx-popup id="tagEditPopup" [visible]="isPopupVisible" (onHidden)="closePopup()" [showTitle]="true" [width]="500"
             [height]="600">
-    <div class="note-edit-form">
+    <div class="tag-edit-form">
       <dx-text-box [(value)]="tag.tagTitle" placeholder="Title"></dx-text-box>
       <dx-button text="Save" (onClick)="save()"></dx-button>
     </div>

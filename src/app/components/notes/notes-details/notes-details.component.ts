@@ -8,6 +8,9 @@ import { RequestService } from '../../../service/notes-service.service';
 import { LoadingComponent } from '../../../shared';
 import { NgIf } from '@angular/common';
 
+/**
+ * Компонент редактирования заметок.
+ */
 @Component({
   selector: 'app-notes-details',
   standalone: true,
@@ -42,6 +45,11 @@ export class NotesDetailsComponent implements OnInit, OnDestroy {
         this.isPopupVisible = true; // Показываем модальное окно после загрузки заметки
         this.cdr.markForCheck();
       });
+  }
+
+  public closePopup(): void {
+    this.isPopupVisible = false;
+    this.router.navigate(['notes']);
   }
 
   public ngOnDestroy(): void {

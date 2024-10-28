@@ -10,7 +10,7 @@
   <div class="note-edit-form">
     <form [formGroup]="noteForm" (ngSubmit)="save()" *ngIf="noteForm">
       <dx-text-box formControlName="title" placeholder="Title"></dx-text-box>
-      <dx-text-area formControlName="content" placeholder="Content"></dx-text-area>
+      <dx-text-area class="text-area" formControlName="content" placeholder="Content"></dx-text-area>
       <dx-button text="Save" type="success" [useSubmitBehavior]="true"></dx-button>
     </form>
   </div>

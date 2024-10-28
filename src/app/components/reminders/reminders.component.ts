@@ -1,19 +1,21 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Subject, takeUntil } from 'rxjs';
-import { Router } from '@angular/router';
-import { DevExtremeModule } from 'devextreme-angular';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {Router} from '@angular/router';
+import {DevExtremeModule} from 'devextreme-angular';
 
-import { NotesDetailsComponent } from '../notes/notes-details/notes-details.component';
-import { NoteAddComponent } from '../notes/note-add/note-add.component';
-import { Remind, Tag } from '../../models';
-import { RequestRemindService } from '../../service/reminds-service.service';
-import { LoadingComponent, SectionWrapperComponent } from '../../shared';
-import { RemindCardComponent } from './remind-card/remind-card.component';
-import { TagsServiceService } from '../../service/tags-service.service';
-import { BaseDataComponent } from '../based/based-data.component';
-import { LoadingService } from '../../service/loader.service';
+import {NotesDetailsComponent} from '../notes/notes-details/notes-details.component';
+import {NoteAddComponent} from '../notes/note-add/note-add.component';
+import {Remind, Tag} from '../../models';
+import {RequestRemindService} from '../../service/reminds-service.service';
+import {LoadingComponent, SectionWrapperComponent} from '../../shared';
+import {RemindCardComponent} from './remind-card/remind-card.component';
+import {TagsServiceService} from '../../service/tags-service.service';
+import {BaseDataComponent} from '../based/based-data.component';
+import {LoadingService} from '../../service/loader.service';
 
+/**
+ * Компонент отображения напоминаний.
+ */
 @Component({
   selector: 'app-reminders',
   standalone: true,
@@ -30,11 +32,9 @@ import { LoadingService } from '../../service/loader.service';
   styleUrl: './reminders.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RemindersComponent extends BaseDataComponent<Remind> implements OnInit, OnDestroy {
+export class RemindersComponent extends BaseDataComponent<Remind> implements OnInit {
   public tags: Tag[] = [];
   public currentRemind: Remind | null = null; // Для отображения в Popup
-
-  private unsubscribe$: Subject<void> = new Subject<void>();
 
   constructor(
     protected override dataService: RequestRemindService,
@@ -52,11 +52,6 @@ export class RemindersComponent extends BaseDataComponent<Remind> implements OnI
   public override ngOnInit(): void {
     super.ngOnInit();
     this.setupReminders();
-  }
-
-  public ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
   }
 
   public addRemind = (): void => {
@@ -77,7 +72,7 @@ export class RemindersComponent extends BaseDataComponent<Remind> implements OnI
       this.remindServ.setReminder(remind);
     });
 
-    this.remindServ.remind$.pipe(takeUntil(this.unsubscribe$)).subscribe((remind) => {
+    this.remindServ.remind$.subscribe((remind) => {
       if (remind) {
         this.currentRemind = remind;
       }

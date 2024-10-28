@@ -1,14 +1,33 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NgIf } from '@angular/common';
-import { switchMap } from 'rxjs';
-import { DxButtonModule, DxDateBoxModule, DxPopupModule, DxTagBoxModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
-import { ActivatedRoute, Router } from '@angular/router';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core';
+import {NgIf} from '@angular/common';
+import {switchMap} from 'rxjs';
+import {
+  DxButtonModule,
+  DxDateBoxModule,
+  DxPopupModule,
+  DxTagBoxModule,
+  DxTextAreaModule,
+  DxTextBoxModule
+} from 'devextreme-angular';
+import {ActivatedRoute, Router} from '@angular/router';
 
-import { RequestRemindService } from '../../../service/reminds-service.service';
-import { TagsServiceService } from '../../../service/tags-service.service';
-import { Remind, Tag } from '../../../models';
-import { LoadingComponent } from '../../../shared';
+import {RequestRemindService} from '../../../service/reminds-service.service';
+import {TagsServiceService} from '../../../service/tags-service.service';
+import {Remind, Tag} from '../../../models';
+import {LoadingComponent} from '../../../shared';
+import {DatesFormat} from "../../../shared/enums/dates-format.enum";
 
+/**
+ * Компонент редактирования напоминания.
+ */
 @Component({
   selector: 'app-remind-details',
   standalone: true,
@@ -24,13 +43,16 @@ export class RemindDetailsComponent implements OnInit {
   public tags: Tag[] = [];
   public isPopupVisible = false;
 
+  protected readonly DatesFormat = DatesFormat;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private reqService: RequestRemindService,
     private router: Router,
     private tagsService: TagsServiceService,
     private cdr: ChangeDetectorRef,
-  ) {}
+  ) {
+  }
 
   public ngOnInit() {
     this.activatedRoute.params.pipe(switchMap((params) => this.reqService.get(params['id']))).subscribe((res: Remind) => {
@@ -69,4 +91,6 @@ export class RemindDetailsComponent implements OnInit {
     this.close.emit();
     this.router.navigate(['reminders']);
   }
+
+
 }

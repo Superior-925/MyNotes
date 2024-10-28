@@ -1,0 +1,11 @@
+.note-edit-form {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.text-area {
+  margin: 5px 0 5px 0;
+  flex-grow: 1;
+}

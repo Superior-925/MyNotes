@@ -9,6 +9,9 @@ export interface IDataService<T> {
   delete: (id: number) => Observable<any>;
 }
 
+/**
+ * Базовый класс-родитель для основных компонентов приложения.
+ */
 @Directive()
 export abstract class BaseDataComponent<T> implements OnInit {
   constructor(

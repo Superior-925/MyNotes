@@ -14,6 +14,9 @@ const navigation: List[] = [
 
 const text = ``;
 
+/**
+ * Сервис для получения данных сайдбара.
+ */
 @Injectable({
   providedIn: 'root',
 })

@@ -11,6 +11,9 @@ import { DevExtremeModule } from 'devextreme-angular';
 import { NoteAddComponent } from './note-add/note-add.component';
 import { LoadingService } from '../../service/loader.service';
 
+/**
+ * Компонент отображения списка заметок.
+ */
 @Component({
   selector: 'app-notes',
   standalone: true,

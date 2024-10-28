@@ -3,6 +3,9 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Tag } from '../../../models';
 import { CardItemComponent } from '../../../shared';
 
+/**
+ * Компонент тега.
+ */
 @Component({
   selector: 'app-tags-card',
   standalone: true,

@@ -1,25 +1,20 @@
-<app-loading [visible]="(loadingService.loading$ | async) ?? false"></app-loading>
-<app-section-wrapper [ButtonName]="'Add new Notes'" [addFunc]="addNote">
-  <ng-container *ngIf="items.length; else emptyListTemplate">
-    <div *ngFor="let note of items" class="card-container">
-      <app-card
-        [note]="note"
-        (deleteNote)="deleteNote(note.id)"
-        (editNote)="noteDetails(note)"
-        class="app-card">
-      </app-card>
-    </div>
-  </ng-container>
-  <ng-template #emptyListTemplate>
-    <div class="card-container empty-list">
-      Пока здесь пусто
-    </div>
-  </ng-template>
-</app-section-wrapper>
+<ng-container *ngIf="!(loadingService.loading$ | async); then notes; else loading"></ng-container>
 
+<ng-template #notes>
+  <app-section-wrapper [ButtonName]="'Add new Notes'" [addFunc]="addNote">
+    <ng-container *ngIf="items.length; else emptyListTemplate">
+      <div *ngFor="let note of items" class="card-container">
+        <app-card [note]="note" (deleteNote)="deleteNote(note.id)" (editNote)="noteDetails(note)"
+                  class="app-card"></app-card>
+      </div>
+    </ng-container>
+  </app-section-wrapper>
+</ng-template>
 
+<ng-template #emptyListTemplate>
+  <div class="card-container empty-list">Пока здесь пусто</div>
+</ng-template>
 
-
-
-
-
+<ng-template #loading>
+  <app-loading [visible]="true"></app-loading>
+</ng-template>

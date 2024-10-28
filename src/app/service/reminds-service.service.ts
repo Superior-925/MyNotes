@@ -5,6 +5,9 @@ import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 import { Remind, Tag } from '../models';
 import { DataService } from './data-service.service';
 
+/**
+ * Сервис работы с напоминаниями.
+ */
 @Injectable({
   providedIn: 'root',
 })

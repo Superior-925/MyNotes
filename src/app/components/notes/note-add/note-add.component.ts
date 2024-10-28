@@ -15,6 +15,9 @@ import { RequestService } from '../../../service/notes-service.service';
 import { Note } from '../../../models';
 import { CommonModule } from '@angular/common';
 
+/**
+ * Компонент добавления заметок.
+ */
 @Component({
   selector: 'app-note-add',
   standalone: true,

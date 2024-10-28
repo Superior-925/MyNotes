@@ -1,19 +1,26 @@
-<app-loading [visible]="(loadingService.loading$ | async) ?? false"></app-loading>
-<app-section-wrapper [ButtonName]="'Add new Remind'" [addFunc]="addRemind">
-  <ng-container *ngIf="items.length; else emptyListTemplate">
+<ng-container *ngIf="!(loadingService.loading$ | async); then reminder; else loading"></ng-container>
+
+<ng-template #reminder>
+  <app-section-wrapper [ButtonName]="'Add new Remind'" [addFunc]="addRemind">
     <ng-container *ngIf="items.length; else emptyListTemplate">
-      <div *ngFor="let remind of items" class="card-container">
-        <app-remind-card [remind]="remind" [deleteParentFunc]="deleteRemind"
-                         [editParentFunc]="remindDetails"></app-remind-card>
-      </div>
+      <ng-container *ngIf="items.length; else emptyListTemplate">
+        <div *ngFor="let remind of items" class="card-container">
+          <app-remind-card [remind]="remind" [deleteParentFunc]="deleteRemind"
+                           [editParentFunc]="remindDetails"></app-remind-card>
+        </div>
+      </ng-container>
     </ng-container>
-  </ng-container>
 
-  <dx-popup *ngIf="currentRemind" [visible]="true" [showCloseButton]="true" (onHiding)="currentRemind = null">
-    <div *ngIf="currentRemind">НАПОМИНАЮ О {{ currentRemind.title }}</div>
-  </dx-popup>
+    <dx-popup *ngIf="currentRemind" [visible]="true" [showCloseButton]="true" (onHiding)="currentRemind = null">
+      <div *ngIf="currentRemind">НАПОМИНАЮ О {{ currentRemind.title }}</div>
+    </dx-popup>
+  </app-section-wrapper>
+</ng-template>
 
-  <ng-template #emptyListTemplate>
-    <div class="card-container empty-list">Пока здесь пусто</div>
-  </ng-template>
-</app-section-wrapper>
+<ng-template #emptyListTemplate>
+  <div class="card-container empty-list">Пока здесь пусто</div>
+</ng-template>
+
+<ng-template #loading>
+  <app-loading [visible]="true"></app-loading>
+</ng-template>

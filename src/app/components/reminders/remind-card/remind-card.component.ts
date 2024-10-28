@@ -4,7 +4,11 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { CardItemComponent } from '../../../shared';
 import { Remind, Tag } from '../../../models';
 import { TagsServiceService } from '../../../service/tags-service.service';
+import { DatesFormat } from '../../../shared/enums/dates-format.enum';
 
+/**
+ * Компонент напоминания.
+ */
 @Component({
   selector: 'app-remind-card',
   standalone: true,
@@ -19,6 +23,8 @@ export class RemindCardComponent implements OnInit {
   @Input() editParentFunc!: (remind: Remind) => void;
 
   public tags: Tag[] = [];
+
+  protected readonly DatesFormat = DatesFormat;
 
   constructor(private tagsService: TagsServiceService) {}
 

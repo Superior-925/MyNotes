@@ -2,13 +2,13 @@
   <h2>{{ remind.title }}</h2>
   <p class="text" *ngIf="remind.deadline">
     Deadline:
-    <span class="inner-text">{{ remind.deadline | date: 'dd.MM.yyyy, HH:mm' }}</span>
+    <span class="inner-text">{{ remind.deadline | date: DatesFormat.basic }}</span>
   </p>
 
   <p class="text">
     Remind me for:
     <span class="inner-text">
-      {{ remind.remindMe | date: 'dd.MM.yyyy,HH:mm' }}
+      {{ remind.remindMe | date: DatesFormat.basic }}
     </span>
   </p>
 

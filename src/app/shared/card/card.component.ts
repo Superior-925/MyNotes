@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { Note } from '../../models';
 import { DxButtonModule } from 'devextreme-angular';
 
+/**
+ * Компонент карточки заметки.
+ */
 @Component({
   selector: 'app-card',
   standalone: true,

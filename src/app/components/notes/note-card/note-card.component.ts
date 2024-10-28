@@ -4,6 +4,9 @@ import { DatePipe } from '@angular/common';
 import { CardItemComponent } from '../../../shared';
 import { Note } from '../../../models';
 
+/**
+ * Компонент заметки.
+ */
 @Component({
   selector: 'app-note-card',
   standalone: true,

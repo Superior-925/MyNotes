@@ -4,6 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { Note } from '../models';
 import { DataService } from './data-service.service';
 
+/**
+ * Сервис работы с заметками.
+ */
 @Injectable({
   providedIn: 'root',
 })

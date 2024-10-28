@@ -1,6 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+/**
+ * Сервис для Добавления, получения, редактирования сущностей приложения.
+ */
 export class DataService<T> {
   protected url: string;
   protected httpOptions = {
