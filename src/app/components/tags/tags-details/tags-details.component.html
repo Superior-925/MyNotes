@@ -1,4 +1,4 @@
-<ng-container *ngIf="tag; then editTag; else loading"></ng-container>
+<ng-container *ngIf="isPopupVisible; then editTag; else loading"></ng-container>
 
 <ng-template #editTag>
   <dx-popup id="noteEditPopup" [visible]="isPopupVisible" (onHidden)="closePopup()" [showTitle]="true" [width]="500"
@@ -11,5 +11,5 @@
 </ng-template>
 
 <ng-template #loading>
-  <app-loading [visible]="!isPopupVisible"></app-loading>
+  <app-loading [visible]="true"></app-loading>
 </ng-template>

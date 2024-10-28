@@ -1,15 +1,18 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NgIf } from '@angular/common';
+import { switchMap } from 'rxjs';
 import { DxButtonModule, DxDateBoxModule, DxPopupModule, DxTagBoxModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { RequestRemindService } from '../../../service/reminds-service.service';
 import { TagsServiceService } from '../../../service/tags-service.service';
 import { Remind, Tag } from '../../../models';
+import { LoadingComponent } from '../../../shared';
 
 @Component({
   selector: 'app-remind-details',
   standalone: true,
-  imports: [DxPopupModule, DxTextBoxModule, DxTextAreaModule, DxTagBoxModule, DxDateBoxModule, DxButtonModule],
+  imports: [DxPopupModule, DxTextBoxModule, DxTextAreaModule, DxTagBoxModule, DxDateBoxModule, DxButtonModule, LoadingComponent, NgIf],
   templateUrl: './remind-details.component.html',
   styleUrl: './remind-details.component.scss',
 })
@@ -25,18 +28,19 @@ export class RemindDetailsComponent implements OnInit {
     private reqService: RequestRemindService,
     private router: Router,
     private tagsService: TagsServiceService,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   public ngOnInit() {
-    this.activatedRoute.params.subscribe((params) => {
-      this.reqService.get(params['id']).subscribe((res: Remind) => {
-        this.remind = res;
-        this.isPopupVisible = true;
-      });
+    this.activatedRoute.params.pipe(switchMap((params) => this.reqService.get(params['id']))).subscribe((res: Remind) => {
+      this.remind = res;
+      this.isPopupVisible = true;
+      this.cdr.markForCheck();
     });
 
     this.tagsService.getAll().subscribe((tags) => {
       this.tags = tags;
+      this.cdr.markForCheck();
     });
   }
 
